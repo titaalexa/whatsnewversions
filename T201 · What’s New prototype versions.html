@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>T201 · What’s New prototype versions</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bar:calc(46px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:#050505;font-family:"Plus Jakarta Sans",system-ui,sans-serif;padding-top:var(--bar)}
+.pb{position:fixed;top:0;left:0;right:0;height:var(--bar);padding:env(safe-area-inset-top,0px) 16px 0;background:#0b0f0d;color:#fff;display:flex;align-items:center;gap:12px;z-index:50;border-bottom:1px solid #1f2a24}
+.pb b{font-size:13px;letter-spacing:-.01em}.pb small{color:#8fa399;font-size:12px}
+.sp{flex:1}
+.seg{display:flex;gap:2px;background:#18211c;border-radius:99px;padding:3px}
+.seg button{font:inherit;font-size:12px;font-weight:700;color:#b8c8bf;background:none;border:0;border-radius:99px;padding:6px 14px;cursor:pointer;transition:background .25s,color .25s}
+.seg button:hover{color:#fff}.seg button[aria-selected=true]{background:#16874e;color:#fff}
+.seg button:focus-visible{outline:2px solid #6fe0a6;outline-offset:2px}
+.seg i{font-style:normal}
+.host[hidden]{display:none}
+@media(max-width:640px){.pb small,.seg .n{display:none}.seg button{padding:6px 12px}}
+</style></head><body>
+<div class="pb"><b>T201 · What’s New</b><small>Prototype versions</small><span class="sp"></span>
+<div class="seg" role="tablist" aria-label="Prototype version">
+<button role="tab" aria-selected="true">V1<span class="n"> · Accordion</span></button>
+<button role="tab" aria-selected="false">V2<span class="n"> · Slider</span></button>
+<button role="tab" aria-selected="false">V3<span class="n"> · Flowing</span></button></div></div>
+<div class="host" id="h1"></div><div class="host" id="h2" hidden></div><div class="host" id="h3" hidden></div>
+<template id="tpl1"><style>
+:host{--bg:#f3f4f3;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e3e8e5;--g:#12844c;--gd:#0e3b27;--gl:#e4f3ea;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050505;--surface:#0d0d0d;--ink:#f5f5f5;--mute:#9a9a9a;--line:#232323;--g:#16874e;--gl:#0f2a1c;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050505;--surface:#0d0d0d;--ink:#f5f5f5;--mute:#9a9a9a;--line:#232323;--g:#16874e;--gl:#0f2a1c;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}
+*{box-sizing:border-box}
+.v{min-height:calc(100vh - var(--bar));margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:1.5}
+button,a{font:inherit;color:inherit;cursor:pointer;background:none;border:0;text-decoration:none}
+button:focus-visible,a:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:var(--bar);z-index:5}
+.bar{max-width:940px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:10px}
+.logo{width:26px;height:26px;border-radius:7px;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.sp{flex:1}.brand{display:flex;align-items:center;gap:8px;font-weight:700}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 14px;font-size:12.5px;font-weight:600}
+.pill.pri{background:var(--g);border-color:var(--g);color:#fff}
+.wrap{max-width:940px;margin:auto;padding:24px 20px 40px}
+.split{display:grid;grid-template-columns:1fr 1fr;border-radius:24px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.08);background:var(--surface)}
+.l{background:linear-gradient(150deg,#0d3524,#14633c);color:#fff;padding:36px 32px}
+.eb{font-size:10.5px;letter-spacing:.14em;color:#6fe0a6;font-weight:600}
+.l h1{font-size:34px;line-height:1.05;letter-spacing:-.04em;margin:14px 0 12px;font-weight:800}.l h1 em{font-style:normal;color:#7de3ae}
+.l p{color:#cfe8da;max-width:34ch;margin:0 0 22px;font-size:13px}
+.fc{background:#fff;color:#0f1a14;border-radius:12px;padding:10px 12px;margin-bottom:8px;max-width:230px;font-size:11px;color:#5d6b63}
+.fc b{display:block;color:#0f1a14;font-size:12px}
+.r{padding:44px 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.ico{width:42px;height:42px;border-radius:12px;background:var(--gl);color:var(--g);display:grid;place-items:center;font-size:18px}
+.r h2{font-size:32px;line-height:1.05;letter-spacing:-.04em;margin:18px 0 8px;font-weight:800}
+.r .s{color:var(--mute);font-size:12.5px;margin:0 0 22px}
+.goog{width:100%;border:1px solid var(--line);border-radius:99px;padding:12px;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0 18px}
+.chips span{border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:11px;color:var(--mute)}
+.hr{width:100%;border-top:1px solid var(--line);padding-top:14px;color:var(--mute);font-size:12px}
+.hr b,.lnk{color:var(--g);font-weight:700}
+.ver{margin-top:12px;font-size:11px;color:var(--mute)}
+.ver button{color:var(--g);font-weight:700;font-size:11px;padding:2px 6px;border-radius:6px;background:var(--gl)}.ver button:hover{text-decoration:underline}
+footer{background:var(--surface);border-top:1px solid var(--line)}
+.fi{max-width:940px;margin:auto;padding:24px 20px;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:16px;font-size:12px}
+.fi h6{margin:0 0 8px;font-size:10.5px;letter-spacing:.12em}
+.fi a,.fi button{display:block;color:var(--mute);margin-bottom:6px;font-size:12px;text-align:left;padding:0}
+.fi button.hl{color:var(--g);font-weight:700}
+.copy{max-width:940px;margin:auto;padding:0 20px 20px;color:var(--mute);font-size:11px}
+.rel{max-width:720px;margin:auto;padding:28px 20px 40px}
+.back{color:var(--g);font-weight:700;margin-bottom:14px}
+.rel h1{font-size:32px;letter-spacing:-.03em;margin:0 0 4px;font-weight:800}.sub{color:var(--mute);margin:0 0 20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px;text-align:left;width:100%;display:block}
+button.card:hover{border-color:var(--g)}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--mute);margin-bottom:6px}
+.tag{border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700;background:var(--g);color:#fff}
+.card h3{margin:0 0 4px;font-size:17px;letter-spacing:-.01em}.card p{margin:0;color:var(--mute)}
+.cp{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}.cp span{font-size:12px;font-weight:600;padding:2px 9px;border-radius:6px}
+.c-new{background:var(--gl);color:var(--g)}.c-imp{background:var(--bbg);color:var(--blue)}.c-fix{background:var(--abg);color:var(--amber)}
+article{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,4vw,34px)}
+article h1{font-size:clamp(24px,4vw,32px);line-height:1.15;margin:6px 0 10px}
+.lead{font-size:16px;color:var(--mute);margin:0 0 18px}
+article h2{font-size:16px;margin:22px 0 8px}article ul{margin:0;padding:0;list-style:none}
+article li{padding:10px 0;border-top:1px solid var(--line)}
+.cta{margin-top:24px;padding:16px;border-radius:14px;background:var(--gl);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cta b{flex:1;min-width:180px}.hide{display:none}
+.acc{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden}
+.acc.open{border-color:var(--g)}
+.ah{display:flex;align-items:center;gap:12px;width:100%;padding:16px 18px;text-align:left}
+.ah:hover{background:var(--bg)}
+.col{flex:1;min-width:0}.at{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em}
+.chev{font-size:20px;color:var(--mute);transition:transform .25s}.acc.open .chev{transform:rotate(180deg)}
+.ab{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s}.acc.open .ab{grid-template-rows:1fr}
+.abi{overflow:hidden;padding:0 18px}.acc.open .abi{padding-bottom:16px}
+.abi .lead{font-size:14px;margin:0 0 6px}.abi h2{font-size:14px;margin:16px 0 6px}
+@media(prefers-reduced-motion:reduce){.ab,.chev{transition:none}}
+@media(max-width:760px){.split{grid-template-columns:1fr}.fi{grid-template-columns:1fr 1fr}.r{padding:32px 20px}}
+</style><div class="v">
+<header><div class="bar"><button class="brand" id="home"><span class="logo">T</span>T201</button><span class="sp"></span><button class="pill" data-home>Sign In</button><button class="pill pri" data-home>Sign Up</button><button class="pill" id="theme" aria-label="Toggle theme">◐</button></div></header>
+
+<main>
+<section id="signin" class="wrap"><div class="split">
+<div class="l"><div class="eb">— JOIN YOUR TEAM</div><h1>Start managing your team’s records, <em>from day one.</em></h1><p>Sign up with your organization Google account to get started with employee profiles and HR records.</p>
+<div class="fc"><b>Employee profiles</b>Centralized records for every team member.</div><div class="fc"><b>Employment history</b>Track role changes and assignments.</div><div class="fc"><b>HR documents</b>Manage required documents and renewals.</div></div>
+<div class="r"><div class="ico">👥</div><h2>Create your account</h2><p class="s">Continue with Google to join your workspace.</p>
+<button class="goog">G&nbsp; Continue with Google</button>
+<div class="chips"><span>Secure SSO</span><span>Team access</span><span>Google Workspace</span></div>
+<div class="hr">Already have an account? <b>Sign in</b><br><br>By continuing, you agree to use your organization’s Google Workspace credentials.</div>
+<div class="ver">v1.6.0 · <button id="ver1">What’s new</button></div></div>
+</div></section>
+
+<section id="rel" class="rel hide">
+<button class="back" id="back">← Back to sign in</button>
+<h1>What’s new in T201</h1><p class="sub">Release notes for every version of T201.</p><div id="feed"></div>
+<div class="cta"><b>Ready to try it? Sign in with your Google Workspace account.</b><button class="pill pri" data-home>Sign in</button></div>
+</section>
+</main>
+
+<footer><div class="fi">
+<div class="brand"><span class="logo">T</span>T201</div>
+<div><h6>PRODUCT</h6><a>Employees</a><a>Records</a><a>Reports</a></div>
+<div><h6>COMPANY</h6><a>About Tito Solutions</a><a>Contact</a></div>
+<div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><button class="hl" id="ver2">What’s New</button><a>Contact</a></div>
+<div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div>
+<div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer>
+
+</div></template>
+<template id="tpl2"><style>
+:host{--bg:#f3f4f3;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e3e8e5;--g:#12844c;--gl:#e4f3ea;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;--lc:#fff;--lct:#0f1a14;--lcm:#5d6b63;--lcl:#e3e8e5;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050505;--surface:#121212;--ink:#f5f5f5;--mute:#9a9a9a;--line:#262626;--g:#16874e;--gl:#0f2a1c;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;--lc:#151917;--lct:#f5f5f5;--lcm:#9aa39e;--lcl:#2a302d;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050505;--surface:#121212;--ink:#f5f5f5;--mute:#9a9a9a;--line:#262626;--g:#16874e;--gl:#0f2a1c;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;--lc:#151917;--lct:#f5f5f5;--lcm:#9aa39e;--lcl:#2a302d;color-scheme:dark}
+*{box-sizing:border-box}
+.v{min-height:calc(100vh - var(--bar));margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:1.5}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+button:focus-visible,.vp:focus-visible{outline:2px solid #6fe0a6;outline-offset:2px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:var(--bar);z-index:5}
+.bar{max-width:1000px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:10px}
+.logo{width:26px;height:26px;border-radius:7px;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700}.sp{flex:1}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 14px;font-size:12.5px;font-weight:600}
+.pill.pri{background:var(--g);border-color:var(--g);color:#fff}
+.wrap{max-width:1000px;margin:auto;padding:24px 20px 40px}
+.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.l{background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),linear-gradient(150deg,#0a2a1c,#0e3b27 55%,#14663d);color:#fff;padding:32px 30px}
+.l,.r,.vp,.tr{min-width:0}.l{overflow:hidden}
+.eb{font-size:10.5px;letter-spacing:.14em;color:#6fe0a6;font-weight:600}
+.l h1{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:12px 0 12px;font-weight:800}.l h1 em{font-style:normal;color:#7de3ae}
+.l>p{color:#cfe8da;max-width:42ch;margin:0 0 20px;font-size:13px}
+.ctl{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.tabs{display:flex;gap:2px;background:rgba(0,0,0,.28);border-radius:99px;padding:3px}
+.tabs button{padding:5px 14px;border-radius:99px;font-size:12px;font-weight:700;color:#cfe8da;display:flex;align-items:center;gap:6px}
+.tabs button[aria-selected=true]{background:#fff;color:#0f1a14}
+.dot{width:7px;height:7px;border-radius:50%;background:#4be08f;animation:p 1.6s infinite}.seen .dot{animation:none;opacity:.5}
+@keyframes p{50%{box-shadow:0 0 0 5px rgba(75,224,143,0)}0%{box-shadow:0 0 0 0 rgba(75,224,143,.6)}}
+.stage{position:relative;margin-right:-30px}.vp{overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}.vp:active{cursor:grabbing}
+.nav{position:absolute;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;background:#fff;color:#0f1a14;font-size:18px;line-height:1;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:2;transition:opacity .4s,transform .4s cubic-bezier(.22,1,.36,1)}
+.nav:hover{transform:scale(1.1)}.nav:active{transform:scale(.94)}.nav[disabled]{opacity:0;pointer-events:none}
+.sl>.rc{height:100%}
+.pv{left:-16px}.nx{left:calc(88% - 10px)}
+.tr{display:flex;align-items:stretch;gap:12px;transition:transform .7s cubic-bezier(.22,1,.36,1);will-change:transform}
+.sl{flex:0 0 88%;min-width:0;opacity:.45;transform:scale(.95);transform-origin:left center;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}.sl.on{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.on li{animation:rise .6s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--n)*55ms + 120ms)}.on h3,.on .rm,.on .rc p,.on .fc,.on .doc{animation:rise .6s cubic-bezier(.22,1,.36,1) both}
+.on .fc:nth-child(2){animation-delay:.07s}.on .fc:nth-child(3){animation-delay:.14s}.on .doc{animation-delay:.1s}
+.s0{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+.fc{display:flex;gap:10px;background:var(--lc);color:var(--lct);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:11px;color:var(--lcm)}
+.fc:last-child{margin-bottom:0}.fc b{display:block;font-size:12px;color:var(--lct)}.fc i{font-style:normal;width:26px;height:26px;border-radius:8px;background:var(--gl);color:var(--g);display:grid;place-items:center;flex:none}
+.doc{background:var(--lc);color:var(--lct);border-radius:14px;padding:12px;font-size:11px;color:var(--lcm);position:relative;margin-top:26px}
+.doc>b{display:block;color:var(--lct);font-size:12px}
+.au{position:absolute;right:-4px;top:-26px;background:#0b0b0b;color:#fff;border-radius:10px;padding:6px 10px;font-size:10px;border:1px solid #2a2a2a}
+.au small{display:block;font-size:8.5px;letter-spacing:.1em;color:#9a9a9a}.au b{color:#fff}
+.pb{display:flex;gap:4px;margin:8px 0}.pb s{height:3px;flex:1;background:var(--g);border-radius:9px}.pb s.e{background:var(--lcl)}
+.dr{display:flex;justify-content:space-between;align-items:center;padding:7px 8px;border-radius:8px;background:rgba(127,127,127,.1);margin-bottom:5px;color:var(--lct);font-weight:600}
+.dr em{font-style:normal;font-size:9.5px;padding:1px 7px;border-radius:99px;background:var(--gl);color:var(--g)}.dr em.w{background:var(--abg);color:var(--amber)}.dr em.n{background:var(--lcl);color:var(--lcm)}
+.rc{background:var(--lc);color:var(--lct);border-radius:14px;padding:14px 16px}
+.rm{display:flex;gap:8px;align-items:center;font-size:11.5px;color:var(--lcm);flex-wrap:wrap}
+.rm b{color:var(--lct)}.rm .cnt{margin-left:auto}
+.tg{background:var(--g);color:#fff;border-radius:99px;padding:1px 9px;font-size:11px;font-weight:700}
+.rc h3{margin:6px 0 2px;font-size:16px;letter-spacing:-.01em}.rc p{margin:0 0 8px;font-size:12px;color:var(--lcm)}
+.rc ul{list-style:none;margin:0;padding:0}.rc li{display:flex;gap:8px;align-items:baseline;padding:5px 0;border-top:1px solid var(--lcl);font-size:12px}
+.k{font-style:normal;font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;flex:none;min-width:58px;text-align:center}
+.c-new{background:var(--gl);color:var(--g)}.c-imp{background:var(--bbg);color:var(--blue)}.c-fix{background:var(--abg);color:var(--amber)}
+.r{padding:40px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ico{width:42px;height:42px;border-radius:12px;background:var(--gl);color:var(--g);display:grid;place-items:center;font-size:18px}
+.r h2{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:16px 0 8px;font-weight:800}
+.r .s{color:var(--mute);font-size:12.5px;margin:0 0 20px}
+.goog{width:100%;border:1px solid var(--line);border-radius:99px;padding:12px;font-weight:600}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0 18px}
+.chips span{border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:11px;color:var(--mute)}
+.hr{width:100%;border-top:1px solid var(--line);padding-top:14px;color:var(--mute);font-size:12px}.hr b{color:var(--g)}
+.ver{margin-top:12px;font-size:11px;color:var(--mute)}
+footer{background:var(--surface);border-top:1px solid var(--line)}
+.fi{max-width:1000px;margin:auto;padding:22px 20px;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:16px;font-size:12px}
+.fi h6{margin:0 0 8px;font-size:10.5px;letter-spacing:.12em}.fi a{display:block;color:var(--mute);margin-bottom:6px}
+.copy{max-width:1000px;margin:auto;padding:0 20px 20px;color:var(--mute);font-size:11px}
+@media(max-width:780px){.split{grid-template-columns:minmax(0,1fr)}.fi{grid-template-columns:1fr 1fr}.r{padding:32px 20px}.s0{grid-template-columns:1fr}.doc{margin-top:30px}}
+@media(prefers-reduced-motion:reduce){.tr,.sl{transition:none}.dot,.on li,.on h3,.on .rm,.on .rc p,.on .fc,.on .doc{animation:none}}
+</style><div class="v">
+<header><div class="bar"><span class="brand"><span class="logo">T</span>T201</span><span class="sp"></span><button class="pill">Sign In</button><button class="pill pri">Sign Up</button><button class="pill" id="theme" aria-label="Toggle theme">◐</button></div></header>
+<main class="wrap"><div class="split">
+<div class="l"><div class="eb">— EMPLOYEE RECORDS PLATFORM</div>
+<h1>Your team’s HR data, <em>organized and secure.</em></h1>
+<p>Sign in with your organization Google account to access profiles, employment history, and HR records.</p>
+<div class="ctl"><div class="tabs" role="tablist" aria-label="Showcase"><button role="tab" id="t0" aria-selected="true">Overview</button><button role="tab" id="t1" aria-selected="false">What’s new <span class="dot"></span></button></div>
+</div>
+<div class="stage"><div class="vp" id="vp" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Overview and release notes"><div class="tr" id="tr">
+<div class="sl"><div class="s0"><div>
+<div class="fc"><i>👥</i><span><b>Employee profiles</b>Centralized records for every team member in one secure place.</span></div>
+<div class="fc"><i>↺</i><span><b>Employment history</b>Track role changes, assignments, and organizational moves over time.</span></div>
+<div class="fc"><i>▤</i><span><b>HR documents</b>Manage required documents, expiry dates, and renewal reminders.</span></div></div>
+<div class="doc"><div class="au"><small>AUDIT TRAIL</small><b>✓ Profile updated</b><small>Today · 2:14 PM</small></div><b>Required documents</b>Ana Reyes · EMP-0042<div class="pb"><s></s><s></s><s></s><s class="e"></s></div>
+<div class="dr">Government ID<em>Verified</em></div><div class="dr">Employment contract<em class="n">On file</em></div><div class="dr">Medical certificate<em class="w">Due in 14 days</em></div></div></div></div>
+</div></div><button class="nav pv" id="prev" aria-label="Previous release" disabled>‹</button><button class="nav nx" id="next" aria-label="Next release">›</button></div></div>
+<div class="r"><div class="ico">👥</div><h2>Welcome back</h2><p class="s">Continue with Google to access your workspace.</p>
+<button class="goog">G&nbsp; Continue with Google</button>
+<div class="chips"><span>Secure SSO</span><span>Team access</span><span>Google Workspace</span></div>
+<div class="hr">Don’t have an account? <b>Sign up</b><br><br>By continuing, you agree to use your organization’s Google Workspace credentials.</div>
+<div class="ver">v1.6.0</div></div>
+</div></main>
+<footer><div class="fi"><div class="brand"><span class="logo">T</span>T201</div>
+<div><h6>PRODUCT</h6><a>Employees</a><a>Records</a><a>Reports</a></div><div><h6>COMPANY</h6><a>About Tito Solutions</a><a>Contact</a></div>
+<div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><a>Contact</a></div><div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div>
+<div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer>
+</div></template>
+<template id="tpl3"><style>
+:host{--bg:#f3f4f3;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e3e8e5;--g:#12844c;--gl:#e4f3ea;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;--lc:#fff;--lct:#0f1a14;--lcm:#5d6b63;--lcl:#e3e8e5;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050505;--surface:#121212;--ink:#f5f5f5;--mute:#9a9a9a;--line:#262626;--g:#16874e;--gl:#0f2a1c;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;--lc:#151917;--lct:#f5f5f5;--lcm:#9aa39e;--lcl:#2a302d;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050505;--surface:#121212;--ink:#f5f5f5;--mute:#9a9a9a;--line:#262626;--g:#16874e;--gl:#0f2a1c;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;--lc:#151917;--lct:#f5f5f5;--lcm:#9aa39e;--lcl:#2a302d;color-scheme:dark}
+*{box-sizing:border-box}
+.v{min-height:calc(100vh - var(--bar));margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:1.5}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+button:focus-visible,.vp:focus-visible{outline:2px solid #6fe0a6;outline-offset:2px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:var(--bar);z-index:5}
+.bar{max-width:1000px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:10px}
+.logo{width:26px;height:26px;border-radius:7px;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700}.sp{flex:1}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 14px;font-size:12.5px;font-weight:600}
+.pill.pri{background:var(--g);border-color:var(--g);color:#fff}
+.wrap{max-width:1000px;margin:auto;padding:24px 20px 40px}
+.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.l{background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),linear-gradient(150deg,#0a2a1c,#0e3b27 55%,#14663d);color:#fff;padding:32px 30px}
+.l,.r,.vp,.tr{min-width:0}.l{overflow:hidden}
+.eb{font-size:10.5px;letter-spacing:.14em;color:#6fe0a6;font-weight:600}
+.l h1{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:12px 0 12px;font-weight:800}.l h1 em{font-style:normal;color:#7de3ae}
+.l>p{color:#cfe8da;max-width:42ch;margin:0 0 20px;font-size:13px}
+.ctl{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ctl{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.lbl{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;font-weight:700;color:#cfe8da}
+.dot{width:8px;height:8px;border-radius:50%;background:#4be08f;animation:p 2s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(75,224,143,.6)}70%,100%{box-shadow:0 0 0 7px rgba(75,224,143,0)}}
+.stage{position:relative;margin-right:-30px}.vp{overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}
+.nav{position:absolute;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;background:#fff;color:#0f1a14;font-size:18px;line-height:1;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:2;transition:opacity .4s,transform .4s cubic-bezier(.22,1,.36,1)}
+.nav:hover{transform:scale(1.1)}.nav:active{transform:scale(.94)}.nav[disabled]{opacity:0;pointer-events:none}
+.sl>.rc{height:100%}
+.pv{left:-16px}.nx{left:calc(88% - 10px)}
+.vp:active{cursor:grabbing}
+.tr{display:flex;align-items:stretch;gap:12px;transition:transform .7s cubic-bezier(.22,1,.36,1);will-change:transform}
+.sl{flex:0 0 88%;min-width:0;opacity:.45;transform:scale(.95);transform-origin:left center;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.sl.on{opacity:1;transform:none}
+.dots{display:flex;gap:6px;margin-top:14px}
+.dots button{height:6px;width:6px;border-radius:99px;background:rgba(255,255,255,.35);transition:width .5s cubic-bezier(.22,1,.36,1),background .4s}
+.dots button.on{width:22px;background:#6fe0a6}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.on li{animation:rise .6s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--n)*55ms + 120ms)}
+.on h3,.on .rm,.on .rc p{animation:rise .6s cubic-bezier(.22,1,.36,1) both}
+.rc{background:var(--lc);color:var(--lct);border-radius:16px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.rm{display:flex;gap:8px;align-items:center;font-size:11.5px;color:var(--lcm);flex-wrap:wrap}
+.rm b{color:var(--lct)}.rm .cnt{margin-left:auto}
+.tg{background:var(--g);color:#fff;border-radius:99px;padding:1px 9px;font-size:11px;font-weight:700}
+.rc h3{margin:6px 0 2px;font-size:16px;letter-spacing:-.01em}.rc p{margin:0 0 8px;font-size:12px;color:var(--lcm)}
+.rc ul{list-style:none;margin:0;padding:0}.rc li{display:flex;gap:8px;align-items:baseline;padding:5px 0;border-top:1px solid var(--lcl);font-size:12px}
+.k{font-style:normal;font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;flex:none;min-width:58px;text-align:center}
+.c-new{background:var(--gl);color:var(--g)}.c-imp{background:var(--bbg);color:var(--blue)}.c-fix{background:var(--abg);color:var(--amber)}
+.r{padding:40px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ico{width:42px;height:42px;border-radius:12px;background:var(--gl);color:var(--g);display:grid;place-items:center;font-size:18px}
+.r h2{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:16px 0 8px;font-weight:800}
+.r .s{color:var(--mute);font-size:12.5px;margin:0 0 20px}
+.goog{width:100%;border:1px solid var(--line);border-radius:99px;padding:12px;font-weight:600}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0 18px}
+.chips span{border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:11px;color:var(--mute)}
+.hr{width:100%;border-top:1px solid var(--line);padding-top:14px;color:var(--mute);font-size:12px}.hr b{color:var(--g)}
+.ver{margin-top:12px;font-size:11px;color:var(--mute)}
+footer{background:var(--surface);border-top:1px solid var(--line)}
+.fi{max-width:1000px;margin:auto;padding:22px 20px;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:16px;font-size:12px}
+.fi h6{margin:0 0 8px;font-size:10.5px;letter-spacing:.12em}.fi a{display:block;color:var(--mute);margin-bottom:6px}
+.copy{max-width:1000px;margin:auto;padding:0 20px 20px;color:var(--mute);font-size:11px}
+@media(max-width:780px){.split{grid-template-columns:minmax(0,1fr)}.fi{grid-template-columns:1fr 1fr}.r{padding:32px 20px}}
+@media(prefers-reduced-motion:reduce){.tr,.vp,.sl,.dots button{transition:none}.dot,.on li,.on h3,.on .rm,.on .rc p{animation:none}}
+</style><div class="v">
+<header><div class="bar"><span class="brand"><span class="logo">T</span>T201</span><span class="sp"></span><button class="pill">Sign In</button><button class="pill pri">Sign Up</button><button class="pill" id="theme" aria-label="Toggle theme">◐</button></div></header>
+<main class="wrap"><div class="split">
+<div class="l"><div class="eb">— EMPLOYEE RECORDS PLATFORM</div>
+<h1>Your team’s HR data, <em>organized and secure.</em></h1>
+<p>Sign in with your organization Google account to access profiles, employment history, and HR records.</p>
+<div class="ctl"><div class="lbl"><span class="dot"></span>WHAT’S NEW</div>
+</div>
+<div class="stage"><div class="vp" id="vp" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Release notes"><div class="tr" id="tr"></div></div><button class="nav pv" id="prev" aria-label="Previous release" disabled>‹</button><button class="nav nx" id="next" aria-label="Next release">›</button></div>
+<div class="dots" id="dots"></div></div>
+<div class="r"><div class="ico">👥</div><h2>Welcome back</h2><p class="s">Continue with Google to access your workspace.</p>
+<button class="goog">G&nbsp; Continue with Google</button>
+<div class="chips"><span>Secure SSO</span><span>Team access</span><span>Google Workspace</span></div>
+<div class="hr">Don’t have an account? <b>Sign up</b><br><br>By continuing, you agree to use your organization’s Google Workspace credentials.</div>
+<div class="ver">v1.6.0</div></div>
+</div></main>
+<footer><div class="fi"><div class="brand"><span class="logo">T</span>T201</div>
+<div><h6>PRODUCT</h6><a>Employees</a><a>Records</a><a>Reports</a></div><div><h6>COMPANY</h6><a>About Tito Solutions</a><a>Contact</a></div>
+<div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><a>Contact</a></div><div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div>
+<div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer>
+</div></template>
+<script>
+function v1(root,host){
+const R=[
+{v:"1.6.0",d:"Oct 20, 2026",t:"Leave management gets a faster approval flow",sum:"Managers can approve or decline several leave requests at once, and everyone sees a clearer balance summary.",new:["Bulk approve or decline leave requests","Leave Balance tab shows used, pending and remaining days","Acknowledge memos directly from the Company Policies page"],imp:["Department filter remembers your last selection","Faster loading for employee profiles"],fix:["Pending leave counts now update right after approval","Fixed wrong dates on mobile leave requests"]},
+{v:"1.5.3",d:"Oct 6, 2026",t:"Salary history and document reminders",sum:"HR documents show clearer expiry reminders, and salary history is easier to review.",new:["Expiry badges for HR documents, such as Due in 14 days"],imp:["Salary history table is easier to scan"],fix:["Fixed audit trail showing the wrong time zone"]},
+{v:"1.5.0",d:"Sep 18, 2026",t:"Company Policies page",sum:"Employees can now read company memos and acknowledge them in one place.",new:["Company Policies page with required acknowledgment"],imp:["Cleaner dashboard layout"],fix:[]}];
+const $=id=>root.getElementById(id);
+const view=v=>{$("signin").classList.toggle("hide",v!=="s");$("rel").classList.toggle("hide",v==="s");scrollTo(0,0)};
+const sec=(t,ic,a)=>a.length?`<h2>${ic} ${t}</h2><ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
+$("feed").innerHTML=R.map((r,i)=>`<div class="acc ${i?"":"open"}"><button class="ah" aria-expanded="${i?"false":"true"}"><span class="col"><span class="meta"><b>v${r.v}</b>· ${r.d}${i?"":'<span class="tag">Latest</span>'}</span><span class="at">${r.t}</span></span><span class="chev">⌄</span></button><div class="ab"><div class="abi"><p class="lead">${r.sum}</p>${sec("New","✨",r.new)}${sec("Improved","🔧",r.imp)}${sec("Fixed","🐛",r.fix)}</div></div></div>`).join("");
+$("feed").onclick=e=>{const h=e.target.closest(".ah");if(!h)return;const o=h.parentElement.classList.toggle("open");h.setAttribute("aria-expanded",o)};
+root.addEventListener("click",e=>{if(e.target.closest("[data-home]"))view("s")});
+$("ver1").onclick=$("ver2").onclick=()=>view("l");$("back").onclick=$("home").onclick=()=>view("s");
+$("theme").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
+}
+function v2(root,host){
+const R=[
+{v:"1.6.0",d:"Oct 20, 2026",t:"Faster leave approvals",sum:"Managers can approve or decline several leave requests at once.",new:["Bulk approve or decline leave requests","Leave Balance shows used, pending and remaining days","Acknowledge memos on the Company Policies page"],imp:["Department filter remembers your last selection","Faster loading for employee profiles"],fix:["Pending leave counts update right after approval","Fixed wrong dates on mobile leave requests"]},
+{v:"1.5.3",d:"Oct 6, 2026",t:"Salary history and document reminders",sum:"Clearer expiry reminders for HR documents.",new:["Expiry badges for HR documents, such as Due in 14 days"],imp:["Salary history table is easier to scan"],fix:["Fixed audit trail showing the wrong time zone"]},
+{v:"1.5.0",d:"Sep 18, 2026",t:"Company Policies page",sum:"Read company memos and acknowledge them in one place.",new:["Company Policies page with required acknowledgment"],imp:["Cleaner dashboard layout"],fix:[]}];
+const $=id=>root.getElementById(id),tr=$("tr"),vp=$("vp");
+const rows=(k,c,a,o)=>a.map((x,j)=>`<li style="--n:${o+j}"><i class="k ${c}">${k}</i><span>${x}</span></li>`).join("");
+tr.insertAdjacentHTML("beforeend",R.map((r,n)=>`<div class="sl"><div class="rc"><div class="rm">${n?"":'<span class="tg">Latest</span>'}<b>T201 v${r.v}</b>· ${r.d}<span class="cnt">${n+1} of ${R.length}</span></div><h3>${r.t}</h3><p>${r.sum}</p><ul>${rows("New","c-new",r.new,0)}${rows("Improved","c-imp",r.imp,r.new.length)}${rows("Fixed","c-fix",r.fix,r.new.length+r.imp.length)}</ul></div></div>`).join(""));
+const sl=[...tr.children],N=sl.length;let i=0;
+function fit(){tr.style.alignItems="flex-start";vp.style.height="auto";const h=Math.max(...sl.map(s=>s.offsetHeight));tr.style.alignItems="";vp.style.height=h+"px"}
+function go(n){i=Math.max(0,Math.min(n,N-1));tr.style.transform=`translateX(${-sl[i].offsetLeft}px)`;
+sl.forEach((s,k)=>{s.classList.toggle("on",k===i);s.setAttribute("aria-hidden",k!==i)});
+
+$("t0").setAttribute("aria-selected",i===0);$("t1").setAttribute("aria-selected",i>0);
+$("prev").disabled=i===0;$("next").disabled=i===N-1;
+if(i>0)$("t1").classList.add("seen"),$("t1").closest(".tabs").classList.add("seen")}
+$("t0").onclick=()=>go(0);$("t1").onclick=()=>go(i>0?i:1);
+$("prev").onclick=()=>go(i-1);$("next").onclick=()=>go(i+1);
+vp.onkeydown=e=>{if(e.key==="ArrowRight")go(i+1);if(e.key==="ArrowLeft")go(i-1)};
+let dx=0,sx=0,t0=0,drag=false,base=0;sl.forEach((s,k)=>s.onclick=()=>{if(Math.abs(dx)<5&&k!==i)go(k)});
+vp.onpointerdown=e=>{drag=true;sx=e.clientX;dx=0;t0=performance.now();base=-sl[i].offsetLeft;tr.style.transition="none";vp.setPointerCapture(e.pointerId)};
+vp.onpointermove=e=>{if(!drag)return;dx=e.clientX-sx;const off=(i===0&&dx>0)||(i===N-1&&dx<0)?dx*.3:dx;tr.style.transform=`translateX(${base+off}px)`};
+vp.onpointerup=vp.onpointercancel=()=>{if(!drag)return;drag=false;tr.style.transition="";const v=dx/Math.max(1,performance.now()-t0);go(dx<-50||v<-.4?i+1:dx>50||v>.4?i-1:i)};
+const re=()=>{fit();go(i)};addEventListener("resize",re);addEventListener("load",re);document.fonts&&document.fonts.ready.then(re);fit();go(0);
+$("theme").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
+}
+function v3(root,host){
+const R=[
+{v:"1.6.0",d:"Oct 20, 2026",t:"Faster leave approvals",sum:"Managers can approve or decline several leave requests at once.",new:["Bulk approve or decline leave requests","Leave Balance shows used, pending and remaining days","Acknowledge memos on the Company Policies page"],imp:["Department filter remembers your last selection","Faster loading for employee profiles"],fix:["Pending leave counts update right after approval","Fixed wrong dates on mobile leave requests"]},
+{v:"1.5.3",d:"Oct 6, 2026",t:"Salary history and document reminders",sum:"Clearer expiry reminders for HR documents.",new:["Expiry badges for HR documents, such as Due in 14 days"],imp:["Salary history table is easier to scan"],fix:["Fixed audit trail showing the wrong time zone"]},
+{v:"1.5.0",d:"Sep 18, 2026",t:"Company Policies page",sum:"Read company memos and acknowledge them in one place.",new:["Company Policies page with required acknowledgment"],imp:["Cleaner dashboard layout"],fix:[]}];
+const $=id=>root.getElementById(id),tr=$("tr"),vp=$("vp");
+const rows=(k,c,a,o)=>a.map((x,j)=>`<li style="--n:${o+j}"><i class="k ${c}">${k}</i><span>${x}</span></li>`).join("");
+tr.innerHTML=R.map((r,n)=>`<div class="sl"><div class="rc"><div class="rm">${n?"":'<span class="tg">Latest</span>'}<b>T201 v${r.v}</b>· ${r.d}<span class="cnt">${n+1} of ${R.length}</span></div><h3>${r.t}</h3><p>${r.sum}</p><ul>${rows("New","c-new",r.new,0)}${rows("Improved","c-imp",r.imp,r.new.length)}${rows("Fixed","c-fix",r.fix,r.new.length+r.imp.length)}</ul></div></div>`).join("");
+$("dots").innerHTML=R.map((r,n)=>`<button aria-label="Go to v${r.v}"></button>`).join("");
+const sl=[...tr.children],dt=[...$("dots").children],N=sl.length;let i=0,dx=0;
+function fit(){tr.style.alignItems="flex-start";vp.style.height="auto";const h=Math.max(...sl.map(s=>s.offsetHeight));tr.style.alignItems="";vp.style.height=h+"px"}
+function go(n){i=Math.max(0,Math.min(n,N-1));tr.style.transform=`translateX(${-sl[i].offsetLeft}px)`;
+sl.forEach((s,k)=>{s.classList.toggle("on",k===i);s.setAttribute("aria-hidden",k!==i)});dt.forEach((d,k)=>d.classList.toggle("on",k===i));
+$("prev").disabled=i===0;$("next").disabled=i===N-1}
+$("prev").onclick=()=>go(i-1);$("next").onclick=()=>go(i+1);dt.forEach((d,k)=>d.onclick=()=>go(k));
+sl.forEach((s,k)=>s.onclick=()=>{if(Math.abs(dx)<5&&k!==i)go(k)});
+vp.onkeydown=e=>{if(e.key==="ArrowRight")go(i+1);if(e.key==="ArrowLeft")go(i-1)};
+let sx=0,t0=0,drag=false,base=0;
+vp.onpointerdown=e=>{drag=true;sx=e.clientX;dx=0;t0=performance.now();base=-sl[i].offsetLeft;tr.style.transition="none";vp.setPointerCapture(e.pointerId)};
+vp.onpointermove=e=>{if(!drag)return;dx=e.clientX-sx;const off=(i===0&&dx>0)||(i===N-1&&dx<0)?dx*.3:dx;tr.style.transform=`translateX(${base+off}px)`};
+vp.onpointerup=vp.onpointercancel=()=>{if(!drag)return;drag=false;tr.style.transition="";const v=dx/Math.max(1,performance.now()-t0);go(dx<-50||v<-.4?i+1:dx>50||v>.4?i-1:i)};
+const re=()=>{fit();go(i)};addEventListener("resize",re);addEventListener("load",re);document.fonts&&document.fonts.ready.then(re);fit();go(0);
+$("theme").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
+}
+const hosts=[1,2,3].map(n=>document.getElementById("h"+n)),fns=[v1,v2,v3],tabs=[...document.querySelectorAll(".seg button")];
+hosts.forEach((h,k)=>{const sr=h.attachShadow({mode:"open"});sr.appendChild(document.getElementById("tpl"+(k+1)).content.cloneNode(true));fns[k](sr,h)});
+function show(k){hosts.forEach((h,j)=>h.hidden=j!==k);tabs.forEach((t,j)=>t.setAttribute("aria-selected",j===k));scrollTo(0,0);requestAnimationFrame(()=>dispatchEvent(new Event("resize")))}
+tabs.forEach((t,k)=>t.onclick=()=>show(k));
+addEventListener("keydown",e=>{if(e.target.closest&&e.target.closest("input,textarea"))return;if(["1","2","3"].includes(e.key))show(+e.key-1)});
+const mo=new MutationObserver(m=>{const t=m[0].target.dataset.theme;hosts.forEach(h=>{if(h.dataset.theme!==t)h.dataset.theme=t})});
+hosts.forEach(h=>mo.observe(h,{attributes:true,attributeFilter:["data-theme"]}));
+</script></body></html>
