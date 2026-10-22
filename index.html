@@ -11,19 +11,15 @@ body{margin:0;background:#050505;font-family:"Plus Jakarta Sans",system-ui,sans-
 .pb b{font-size:13px;letter-spacing:-.01em}.pb small{color:#8fa399;font-size:12px}
 .sp{flex:1}
 .seg{display:flex;gap:2px;background:#18211c;border-radius:99px;padding:3px}
-.seg button{font:inherit;font-size:12px;font-weight:700;color:#b8c8bf;background:none;border:0;border-radius:99px;padding:6px 14px;cursor:pointer;transition:background .25s,color .25s}
+.seg button{font:inherit;font-size:12px;font-weight:700;color:#b8c8bf;background:none;border:0;border-radius:99px;padding:6px 13px;cursor:pointer;transition:background .25s,color .25s}
 .seg button:hover{color:#fff}.seg button[aria-selected=true]{background:#16874e;color:#fff}
 .seg button:focus-visible{outline:2px solid #6fe0a6;outline-offset:2px}
-.seg i{font-style:normal}
 .host[hidden]{display:none}
-@media(max-width:640px){.pb small,.seg .n{display:none}.seg button{padding:6px 12px}}
+@media(max-width:860px){.pb small,.seg .n{display:none}.seg button{padding:6px 12px}}
 </style></head><body>
 <div class="pb"><b>T201 · What’s New</b><small>Prototype versions</small><span class="sp"></span>
-<div class="seg" role="tablist" aria-label="Prototype version">
-<button role="tab" aria-selected="true">V1<span class="n"> · Accordion</span></button>
-<button role="tab" aria-selected="false">V2<span class="n"> · Slider</span></button>
-<button role="tab" aria-selected="false">V3<span class="n"> · Flowing</span></button></div></div>
-<div class="host" id="h1"></div><div class="host" id="h2" hidden></div><div class="host" id="h3" hidden></div>
+<div class="seg" role="tablist" aria-label="Prototype version"><button role="tab" aria-selected="true">V1<span class="n"> · Accordion</span></button><button role="tab" aria-selected="false">V2<span class="n"> · Slider</span></button><button role="tab" aria-selected="false">V3<span class="n"> · Flowing</span></button><button role="tab" aria-selected="false">V4<span class="n"> · Pop-up</span></button><button role="tab" aria-selected="false">V5<span class="n"> · Landing</span></button><button role="tab" aria-selected="false">V6<span class="n"> · Full flow</span></button></div></div>
+<div class="host" id="h1"></div><div class="host" id="h2" hidden></div><div class="host" id="h3" hidden></div><div class="host" id="h4" hidden></div><div class="host" id="h5" hidden></div><div class="host" id="h6" hidden></div>
 <template id="tpl1"><style>
 :host{--bg:#f3f4f3;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e3e8e5;--g:#12844c;--gd:#0e3b27;--gl:#e4f3ea;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;color-scheme:light}
 @media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050505;--surface:#0d0d0d;--ink:#f5f5f5;--mute:#9a9a9a;--line:#232323;--g:#16874e;--gl:#0f2a1c;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}}
@@ -303,6 +299,477 @@ footer{background:var(--surface);border-top:1px solid var(--line)}
 <div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><a>Contact</a></div><div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div>
 <div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer>
 </div></template>
+<template id="tpl4"><style>
+:host{--bg:#f1f3f2;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e3e8e5;--g:#12844c;--gl:#e4f3ea;--on:#fff;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050606;--surface:#0b0d0c;--ink:#f2f5f3;--mute:#8b9892;--line:#1f2523;--g:#2fc79a;--gl:#11281f;--on:#04251a;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050606;--surface:#0b0d0c;--ink:#f2f5f3;--mute:#8b9892;--line:#1f2523;--g:#2fc79a;--gl:#11281f;--on:#04251a;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}
+
+.v{min-height:calc(100vh - var(--bar));margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:13.5px;line-height:1.5}
+*{box-sizing:border-box}button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+button:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.app{display:flex;gap:10px;padding:8px}
+.side{width:236px;flex:none;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 10px;position:sticky;top:calc(var(--bar,0px) + 8px);height:calc(100vh - var(--bar,0px) - 16px);overflow:auto}
+.sh{display:flex;align-items:center;gap:10px;padding:2px 8px 10px;font-weight:800;font-size:15px}
+.lg{width:26px;height:26px;border-radius:8px;background:var(--g);color:var(--on);display:grid;place-items:center;font-size:13px}
+.side h6{margin:14px 8px 4px;font-size:10.5px;letter-spacing:.08em;color:var(--mute);font-weight:600}
+.it{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:12px;font-weight:500;text-align:left;color:var(--ink)}
+.it i{font-style:normal;width:16px;text-align:center;color:var(--mute);font-size:13px}.it:hover{background:var(--bg)}
+.it .n{margin-left:auto;background:var(--gl);color:var(--g);border-radius:99px;font-size:10.5px;font-weight:700;padding:0 7px}
+.it .nw{margin-left:auto;background:var(--g);color:var(--on);border-radius:99px;font-size:9.5px;font-weight:800;padding:0 7px;letter-spacing:.04em}
+.it.on{background:var(--g);color:var(--on);font-weight:700}.it.on i{color:var(--on)}
+.sub{padding-left:16px;margin-left:16px;border-left:1px solid var(--line)}.sub .it{color:var(--mute);padding:6px 10px}
+.main{flex:1;min-width:0}
+.top{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 12px;margin-bottom:10px}
+.search{flex:1;border:1px solid var(--line);border-radius:99px;padding:7px 14px;color:var(--mute)}
+.ic{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;position:relative}.ic:hover{background:var(--bg)}
+.bd{position:absolute;top:0;right:-2px;background:#e5484d;color:#fff;border-radius:99px;font-size:9px;font-weight:700;padding:0 5px}
+.vas{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:99px;padding:3px 12px 3px 4px;line-height:1.15}
+.vas small{display:block;font-size:8.5px;letter-spacing:.08em;color:var(--mute)}.vas b{font-size:12px}
+.av{width:30px;height:30px;border-radius:50%;background:var(--g);color:var(--on);display:grid;place-items:center;font-weight:800;font-size:11px}
+.pnl{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px 40px;min-height:calc(100vh - var(--bar,0px) - 80px)}
+h1{font-size:26px;letter-spacing:-.03em;margin:0;font-weight:800}.sb{color:var(--mute);margin:0 0 16px}
+.hd{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}.hd>div{flex:1}
+.pill{border:1px solid var(--line);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:600;background:var(--surface)}
+.cd{border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.ch{display:flex;align-items:center;gap:10px;padding:12px 14px}.ch b{display:block}.ch small{color:var(--mute)}
+.bi{width:32px;height:32px;border-radius:10px;background:var(--gl);color:var(--g);display:grid;place-items:center;flex:none}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line)}.row>div{flex:1;min-width:0}.row small{display:block;color:var(--mute)}
+.tg{font-size:10.5px;font-weight:700;border-radius:99px;padding:1px 9px;background:var(--gl);color:var(--g);margin-left:6px}.tg.w{background:var(--abg);color:var(--amber)}
+.btn{background:var(--g);color:var(--on);border-radius:99px;padding:7px 16px;font-weight:700;font-size:12.5px;white-space:nowrap}
+.btn.o{background:none;border:1px solid var(--line);color:var(--ink)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt{width:38px;height:38px;border:1px solid var(--line);border-radius:9px;text-align:center;font-size:9px;font-weight:800;line-height:1.1;padding-top:5px;color:var(--g)}.dt b{display:block;font-size:14px;color:var(--ink)}
+.emp{text-align:center;padding:34px 10px;color:var(--mute)}
+.hide{display:none!important}
+.acc{border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}.acc.open{border-color:var(--g)}
+.ah{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;text-align:left}.ah:hover{background:var(--bg)}
+.ah .m{color:var(--mute);font-size:12px;display:block}.ah .t{font-weight:700;font-size:15px;display:block}.col{flex:1;min-width:0}
+.chev{font-size:18px;color:var(--mute);transition:transform .3s}.acc.open .chev{transform:rotate(180deg)}
+.ab{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}.acc.open .ab{grid-template-rows:1fr}
+.abi{overflow:hidden;padding:0 16px}.acc.open .abi{padding-bottom:14px}
+.abi ul{list-style:none;margin:0;padding:0}.abi li{display:flex;gap:8px;align-items:baseline;padding:7px 0;border-top:1px solid var(--line)}
+.k{font-style:normal;font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;min-width:58px;text-align:center;flex:none}
+.c-new{background:var(--gl);color:var(--g)}.c-imp{background:var(--bbg);color:var(--blue)}.c-fix{background:var(--abg);color:var(--amber)}
+.ov{position:fixed;top:var(--bar,0px);left:0;right:0;bottom:0;background:rgba(3,8,6,.6);backdrop-filter:blur(3px);display:grid;place-items:center;z-index:30;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;padding:16px}
+.ov.show{opacity:1;visibility:visible}
+.md{position:relative;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;width:100%;max-width:780px;padding:42px 60px 28px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:translateY(14px) scale(.98);transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.show .md{transform:none}
+.x{position:absolute;top:14px;right:16px;width:30px;height:30px;border-radius:50%;font-size:20px;color:var(--mute);display:grid;place-items:center}.x:hover{background:var(--bg)}
+.md h2{margin:0 0 10px;text-align:center;font-size:24px;letter-spacing:-.02em}.md p{margin:0;text-align:center;color:var(--mute);font-size:14px;max-width:48ch;margin-inline:auto}
+.ver{text-align:center;margin-bottom:10px}
+.ill{height:290px;position:relative;width:100%;border:0;text-align:left;cursor:pointer;transition:transform .4s cubic-bezier(.22,1,.36,1);border-radius:12px;background:linear-gradient(135deg,var(--gl),transparent 70%),var(--bg);display:grid;place-items:center;margin:20px 0 22px;overflow:hidden}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;width:min(82%,460px);box-shadow:0 14px 34px rgba(0,0,0,.18);font-size:12px}
+.mini .r{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line)}.mini .r:first-child{border:0}.mini .r span{flex:1}
+.ck{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--g);flex:none;display:grid;place-items:center;font-size:10px;color:var(--on)}.ck.on{background:var(--g)}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}.st div{background:var(--bg);border-radius:10px;padding:8px;text-align:center;color:var(--mute);font-size:11px}.st b{display:block;font-size:20px;color:var(--ink)}
+.pr{height:6px;border-radius:9px;background:var(--line)}.pr i{display:block;height:100%;border-radius:9px;background:var(--g)}
+.chs{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}.chs span{font-size:11px;font-weight:700;border-radius:6px;padding:1px 8px}
+.ft{display:flex;justify-content:center}
+.ill:hover{transform:scale(1.012)}.hint{position:absolute;bottom:12px;right:12px;background:var(--g);color:var(--on);border-radius:99px;padding:4px 13px;font-size:11.5px;font-weight:700}
+.ar{position:absolute;top:50%;width:42px;height:42px;margin-top:-30px;border-radius:50%;background:var(--surface);border:1px solid var(--line);font-size:24px;line-height:1;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:2;transition:opacity .3s,transform .3s cubic-bezier(.22,1,.36,1)}
+.ar:hover{transform:scale(1.1)}.ar:active{transform:scale(.94)}.ar[disabled]{opacity:0;pointer-events:none}.pv{left:-21px}.nx2{right:-21px}
+.sub .it.on{color:var(--on)}
+.lg0{min-height:calc(100vh - var(--bar,0px))}
+.sh0{background:var(--surface);border-bottom:1px solid var(--line)}.sbar{max-width:960px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:10px}
+.sp{flex:1}.brand{display:flex;align-items:center;gap:8px;font-weight:700}.pri2{background:var(--g);border-color:var(--g);color:var(--on)}
+.swrap{max-width:960px;margin:auto;padding:24px 20px 40px}
+.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.sl{background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),linear-gradient(150deg,#0a2a1c,#0e3b27 55%,#14663d);color:#fff;padding:32px 30px;min-width:0}
+.seb{font-size:10.5px;letter-spacing:.14em;color:#6fe0a6;font-weight:600}
+.sl h1{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:12px 0;font-weight:800}.sl h1 em{font-style:normal;color:#7de3ae}
+.sl>p{color:#cfe8da;max-width:42ch;margin:0 0 20px;font-size:13px}
+.s0{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+.fc{display:flex;gap:10px;background:var(--surface);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:11px;color:var(--mute)}.fc b{display:block;font-size:12px;color:var(--ink)}
+.fc i{font-style:normal;width:26px;height:26px;border-radius:8px;background:var(--gl);color:var(--g);display:grid;place-items:center;flex:none}
+.dc{background:var(--surface);border-radius:14px;padding:12px;font-size:11px;color:var(--mute);position:relative;margin-top:26px}.dc>b{display:block;color:var(--ink);font-size:12px}
+.au{position:absolute;right:-4px;top:-26px;background:#0b0b0b;color:#fff;border-radius:10px;padding:6px 10px;font-size:10px;border:1px solid #2a2a2a}.au small{display:block;font-size:8.5px;letter-spacing:.1em;color:#9a9a9a}.au b{color:#fff}
+.pbr{display:flex;gap:4px;margin:8px 0}.pbr s{height:3px;flex:1;background:var(--g);border-radius:9px}.pbr s.e{background:var(--line)}
+.drr{display:flex;justify-content:space-between;align-items:center;padding:7px 8px;border-radius:8px;background:rgba(127,127,127,.1);margin-bottom:5px;color:var(--ink);font-weight:600}
+.drr em{font-style:normal;font-size:9.5px;padding:1px 7px;border-radius:99px;background:var(--gl);color:var(--g)}.drr em.w{background:var(--abg);color:var(--amber)}.drr em.n{background:var(--line);color:var(--mute)}
+.sr{padding:44px 40px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.sr h2{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:16px 0 8px;font-weight:800}.ss{color:var(--mute);font-size:12.5px;margin:0 0 20px}
+.hr0{width:100%;border-top:1px solid var(--line);padding-top:14px;color:var(--mute);font-size:12px}.hr0 b{color:var(--g)}.vr{margin-top:12px;font-size:11px;color:var(--mute)}
+.ftr{background:var(--surface);border-top:1px solid var(--line)}.ftr .fi{max-width:960px;margin:auto;padding:22px 20px;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:16px;font-size:12px}
+.fi h6{margin:0 0 8px;font-size:10.5px;letter-spacing:.12em}.fi a{display:block;color:var(--mute);margin-bottom:6px}.copy{max-width:960px;margin:auto;padding:0 20px 20px;color:var(--mute);font-size:11px}
+@media(max-width:780px){.split{grid-template-columns:minmax(0,1fr)}.s0{grid-template-columns:1fr}.sr{padding:32px 20px}.ftr .fi{grid-template-columns:1fr 1fr}}
+.gbtn{width:100%;border:1px solid var(--line);border-radius:99px;padding:12px;font-weight:600}.gbtn:hover{border-color:var(--g)}
+.chs2{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:14px 0 18px}.chs2 span{border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:11px;color:var(--mute)}
+@media(max-width:900px){.pv{left:4px}.nx2{right:4px}.ill{height:250px}}
+.dots{display:flex;gap:7px}.dots button{width:8px;height:8px;border-radius:99px;background:var(--line);transition:width .4s cubic-bezier(.22,1,.36,1),background .3s}.dots button.on{width:22px;background:var(--g)}
+.lnk{margin-left:auto;color:var(--g);font-weight:700;font-size:12.5px}.lnk:hover{text-decoration:underline}
+.nx{background:var(--g);color:var(--on);border-radius:8px;padding:10px 26px;font-weight:700}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.a>*{animation:rise .5s cubic-bezier(.22,1,.36,1) both}.a>:nth-child(2){animation-delay:.05s}.a>:nth-child(3){animation-delay:.1s}.a>:nth-child(4){animation-delay:.15s}
+@media(max-width:900px){.side{display:none}.g2{grid-template-columns:1fr}.md{padding:30px 20px 20px}.lnk{display:none}.nx{margin-left:auto}}
+@media(prefers-reduced-motion:reduce){.md,.ov,.dots button,.ab,.chev{transition:none}.a>*{animation:none}}
+</style><div class="v">
+<div id="login" class="lg0"><header class="sh0"><div class="sbar"><span class="brand"><span class="lg">T</span>T201</span><span class="sp"></span><button class="pill">Sign In</button><button class="pill pri2">Sign Up</button><button class="pill" id="theme0" aria-label="Toggle theme">◐</button></div></header>
+<div class="swrap"><div class="split"><div class="sl"><div class="seb">— EMPLOYEE RECORDS PLATFORM</div><h1>Your team’s HR data, <em>organized and secure.</em></h1><p>Sign in with your organization Google account to access profiles, employment history, and HR records.</p>
+<div class="s0"><div><div class="fc"><i>👥</i><span><b>Employee profiles</b>Centralized records for every team member in one secure place.</span></div><div class="fc"><i>↺</i><span><b>Employment history</b>Track role changes, assignments, and organizational moves over time.</span></div><div class="fc"><i>▤</i><span><b>HR documents</b>Manage required documents, expiry dates, and renewal reminders.</span></div></div>
+<div class="dc"><div class="au"><small>AUDIT TRAIL</small><b>✓ Profile updated</b><small>Today · 2:14 PM</small></div><b>Required documents</b>Ana Reyes · EMP-0042<div class="pbr"><s></s><s></s><s></s><s class="e"></s></div><div class="drr">Government ID<em>Verified</em></div><div class="drr">Employment contract<em class="n">On file</em></div><div class="drr">Medical certificate<em class="w">Due in 14 days</em></div></div></div></div>
+<div class="sr"><div class="bi" style="width:42px;height:42px">👥</div><h2>Welcome back</h2><p class="ss">Continue with Google to access your workspace.</p><button class="gbtn" id="gbtn">G&nbsp; Continue with Google</button><div class="chs2"><span>Secure SSO</span><span>Team access</span><span>Google Workspace</span></div><div class="hr0">Don’t have an account? <b>Sign up</b><br><br>By continuing, you agree to use your organization’s Google Workspace credentials.</div><div class="vr">v1.6.0</div></div></div></div>
+<footer class="ftr"><div class="fi"><div class="brand"><span class="lg">T</span>T201</div><div><h6>PRODUCT</h6><a>Employees</a><a>Records</a><a>Reports</a></div><div><h6>COMPANY</h6><a>About Tito Solutions</a><a>Contact</a></div><div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><a>Contact</a></div><div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div><div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer></div>
+<div class="app hide" id="appw">
+<aside class="side"><div class="sh"><span class="lg">▦</span>T201</div>
+<h6>OVERVIEW</h6>
+<button class="it on" data-p="dash"><i>▦</i>Dashboard</button><button class="it"><i>✉</i>Messages</button><button class="it"><i>◷</i>ND and OT<i style="margin-left:auto">🔒</i></button>
+<button class="it"><i>🔔</i>Announcements<span class="n">6</span></button><div class="sub"><button class="it" data-p="rel">Releases<span class="n">4</span></button><button class="it">Events<span class="n">2</span></button></div>
+<h6>PEOPLE</h6><button class="it"><i>☺</i>Employee</button><button class="it"><i>✎</i>Evaluations</button><button class="it"><i>⛨</i>Roles &amp; access</button><button class="it"><i>✈</i>Leaves</button>
+<button class="it"><i>⚠</i>Incidents<span class="n">1</span></button><div class="sub"><button class="it">Report an Incident</button><button class="it">My Reports</button><button class="it">My Notices<span class="n">1</span></button></div>
+<button class="it"><i>▣</i>Schedules</button><button class="it"><i>✓</i>Onboarding</button>
+<h6>RECORDS</h6><button class="it"><i>❏</i>Policies<span class="n">3</span></button><button class="it"><i>▤</i>Documents</button><button class="it"><i>☰</i>Audit log</button></aside>
+<div class="main">
+<div class="top"><div class="search">⌕ Search anything here...</div><button class="ic" aria-label="Notifications">🔔<span class="bd">4</span></button><button class="ic" id="theme" aria-label="Toggle theme">☾</button>
+<div class="vas"><div><small>VIEWING AS</small><b>Maria · Reporter</b></div></div><button class="av" id="avt" title="Sign out" aria-label="Sign out">MS</button></div>
+<div class="pnl">
+<section id="dash"><div class="hd"><div><h1>Welcome back, Maria!</h1><p class="sb">Here’s what’s happening in your workspace.</p></div><span class="pill">30d · <b>60d</b> · 90d</span></div>
+<div class="cd"><div class="ch"><span class="bi">🔔</span><div><b>Announcements</b><small>New policies and memoranda · 3 waiting for your acknowledgment</small></div><span class="btn" style="margin-left:auto">Go to Policies →</span></div>
+<div class="row"><div><b>Year-End Holiday Pay and Special Non-Working Days</b><span class="tg">Memorandum</span><span class="tg w">New · needs acknowledgment</span><small>Posted Oct 10, 2026 · Issued by Human Resources</small></div><span class="btn">Read &amp; acknowledge</span></div>
+<div class="row"><div><b>Reminder: Incident Reporting Channel and Non-Retaliation</b><span class="tg">Memorandum</span><span class="tg w">New · needs acknowledgment</span><small>Posted Oct 1, 2026 · Issued by Human Resources</small></div><span class="btn">Read &amp; acknowledge</span></div>
+<div class="row"><div><b>Work Arrangements During Severe Weather and Calamities</b><span class="tg">Memorandum</span><small>Posted Sep 15, 2026 · Issued by Human Resources</small></div><span class="btn o">View</span></div></div>
+<div class="g2"><div class="cd"><div class="ch"><span class="bi">▣</span><div><b>Contract Milestones</b><small>Your regularization and work anniversary dates</small></div></div><div class="emp"><b style="color:var(--ink)">You’re all caught up!</b><br>No contract milestones in the next 60 days.</div></div>
+<div class="cd"><div class="ch"><span class="bi">▣</span><div><b>Upcoming Events</b><small>Calendar events and holidays</small></div><span class="btn o" style="margin-left:auto">View Calendar</span></div>
+<div class="row"><span class="dt">OCT<b>16</b></span><div><b>Engineering Adjusted Holiday</b><small>Regular Holiday · Friday</small></div></div>
+<div class="row"><span class="dt">NOV<b>1</b></span><div><b>All Saints’ Day</b><small>Special Non-Working Day · Sunday</small></div></div>
+<div class="row"><span class="dt">NOV<b>30</b></span><div><b>Bonifacio Day</b><small>Regular Holiday · Monday</small></div></div></div></div></section>
+<section id="rel" class="hide"><div class="hd"><div><h1>Releases</h1><p class="sb">Release notes for every version of T201.</p></div><button class="pill" id="replay">▶ Replay pop-up</button></div><div id="feed"></div></section>
+</div></div></div>
+
+<div class="ov" id="ov"><div class="md" role="dialog" aria-modal="true" aria-labelledby="mt">
+<button class="x" id="cl" aria-label="Close">×</button><button class="ar pv" id="pv" aria-label="Previous" disabled>‹</button><button class="ar nx2" id="nx" aria-label="Next">›</button>
+<div id="sc"></div>
+<div class="ft"><div class="dots" id="dots"></div></div></div></div>
+</div></template>
+<template id="tpl5"><style>
+:host{--bg:#f6f7f6;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e1e7e3;--g:#12844c;--gt:#12844c;--gl:#e4f3ea;--on:#fff;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050505;--surface:#0e0f0e;--ink:#f3f4f3;--mute:#8d9691;--line:#1d201e;--g:#1f9a5f;--gt:#3ecf8e;--gl:#0f2a1c;--on:#fff;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050505;--surface:#0e0f0e;--ink:#f3f4f3;--mute:#8d9691;--line:#1d201e;--g:#1f9a5f;--gt:#3ecf8e;--gl:#0f2a1c;--on:#fff;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+.v{min-height:calc(100vh - var(--bar));margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:1.55}
+*{box-sizing:border-box}button,a{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+header{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);position:sticky;top:var(--bar);z-index:5}
+.w{max-width:800px;margin:auto;padding:0 20px}
+.bar{display:flex;align-items:center;gap:8px;height:50px}.sp{flex:1}
+.lg{width:24px;height:24px;border-radius:7px;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700}
+.pill.pri{background:var(--g);border-color:var(--g);color:#fff}
+.hero{text-align:center;padding:48px 0 30px}
+.ann{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 14px 4px 5px;font-size:12px;font-weight:600;margin-bottom:22px}
+.ann b{background:var(--g);color:#fff;border-radius:99px;padding:1px 9px;font-size:11px}.ann:hover{border-color:var(--g)}
+.eb{font-size:10px;letter-spacing:.16em;color:var(--gt);font-weight:600;margin-bottom:14px}
+h1{font-size:clamp(38px,8vw,68px);line-height:.98;letter-spacing:-.05em;font-weight:800;margin:0 auto 18px;max-width:11em}h1 em,h2 em{font-style:normal;color:var(--gt)}
+.hero p{color:var(--mute);max-width:46ch;margin:0 auto 22px;font-size:15px}.hero p b{color:var(--ink)}
+.em{display:flex;max-width:380px;margin:auto;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 5px 5px 18px;align-items:center}
+.em span{flex:1;text-align:left;color:var(--mute);font-size:13px}
+.ft3{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;color:var(--mute);font-size:11.5px;margin-top:16px}
+.app{position:relative;margin:34px 0 0;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:visible}
+.ah{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-size:11px;color:var(--mute)}.ah i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.ab{display:grid;grid-template-columns:140px 1fr;min-height:190px}
+.sd{border-right:1px solid var(--line);padding:12px 10px;font-size:11.5px;color:var(--mute)}.sd div{padding:6px 10px;border-radius:8px;margin-bottom:3px}.sd .on{background:var(--g);color:#fff;font-weight:700}
+.ls{padding:12px 14px}.ro{display:flex;align-items:center;gap:12px;padding:9px 6px;border-radius:10px;font-size:12px}.ro:first-child{background:var(--bg)}
+.ro .a{width:26px;height:26px;border-radius:50%;background:var(--gl);color:var(--gt);display:grid;place-items:center;font-size:10px;font-weight:800}.ro div{flex:1}.ro small{display:block;color:var(--mute);font-size:10.5px}
+.tg{font-size:10px;font-weight:700;border-radius:99px;padding:1px 9px;background:var(--gl);color:var(--gt)}.tg.w{background:var(--abg);color:var(--amber)}
+.hc{position:absolute;right:-18px;top:34px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;width:150px;box-shadow:0 14px 34px rgba(0,0,0,.25)}
+.hc small{color:var(--mute);font-size:10.5px}.hc b{display:block;font-size:22px}.hc svg{width:100%;height:28px}
+.tr{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:26px 0;margin-top:56px}
+.tr small{font-size:10px;letter-spacing:.14em;color:var(--mute);flex:1;min-width:140px}.tr span{color:var(--mute);font-size:13px;font-weight:500}
+section.s{padding:64px 0 8px}
+h2{font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.04em;font-weight:800;margin:0 0 26px;max-width:14em}
+.gr{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}
+.cd{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1)}.cd:hover{border-color:var(--g);transform:translateY(-3px)}
+.cd .n{font-size:10px;color:var(--mute);letter-spacing:.1em}.cd h3{margin:8px 0 6px;font-size:18px;letter-spacing:-.02em}.cd p{margin:0 0 14px;color:var(--mute);font-size:12.5px}
+.ic{width:30px;height:30px;border-radius:9px;background:var(--gl);color:var(--gt);display:grid;place-items:center;margin-bottom:6px}
+.mi{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12px;display:flex;justify-content:space-between;margin-bottom:6px}
+.sw{width:22px;height:12px;border-radius:9px;background:var(--g);position:relative}.sw::after{content:"";position:absolute;right:2px;top:2px;width:8px;height:8px;border-radius:50%;background:#fff}.sw.off{background:var(--line)}.sw.off::after{right:auto;left:2px}
+.m{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--mute)}.m b{color:var(--ink)}
+.lt{background:var(--g);color:#fff;border-radius:99px;padding:1px 10px;font-size:11px;font-weight:700}
+.k{font-style:normal;font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;min-width:58px;text-align:center;flex:none}
+.c-new{background:var(--gl);color:var(--gt)}.c-imp{background:var(--bbg);color:var(--blue)}.c-fix{background:var(--abg);color:var(--amber)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:60px}
+.st{border-top:1px solid var(--line);padding-top:12px}.st:first-child{border-color:var(--g)}.st small{font-size:10px;letter-spacing:.1em;color:var(--mute);display:flex;justify-content:space-between}
+.st h3{margin:14px 0 6px;font-size:16px}.st p{margin:0;color:var(--mute);font-size:12.5px}
+.rl{max-width:720px;margin:auto;padding:40px 0 70px}.back{color:var(--gt);font-weight:700;margin-bottom:16px}.sbt{color:var(--mute);margin:0 0 22px}
+.acc{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden;transition:border-color .3s}.acc.open{border-color:var(--g)}
+.ach{display:flex;align-items:center;gap:12px;width:100%;padding:16px 18px;text-align:left}.ach:hover{background:var(--bg)}
+.ct{flex:1;min-width:0}.at{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em}
+.chev{font-size:20px;color:var(--mute);transition:transform .3s}.acc.open .chev{transform:rotate(180deg)}
+.acb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)}.acc.open .acb{grid-template-rows:1fr}
+.abi2{overflow:hidden;padding:0 18px}.acc.open .abi2{padding-bottom:16px}.abi2 p{margin:0 0 4px;color:var(--mute)}.abi2 h4{margin:14px 0 4px;font-size:13px}
+.abi2 ul{list-style:none;margin:0;padding:0}.abi2 li{padding:8px 0;border-top:1px solid var(--line);font-size:13px}
+.cta{margin-top:20px;padding:16px;border-radius:14px;background:var(--gl);display:flex;gap:12px;align-items:center;flex-wrap:wrap}.cta b{flex:1;min-width:180px}
+.hide{display:none!important}
+footer{border-top:1px solid var(--line)}
+.fi{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:16px;padding:40px 20px 24px;font-size:12px}
+.fi h6{margin:0 0 10px;font-size:10px;letter-spacing:.14em}.fi a{display:block;color:var(--mute);margin-bottom:7px}.fi a.hl{color:var(--gt);font-weight:700}
+.copy{border-top:1px solid var(--line);padding:16px 20px;color:var(--mute);font-size:11.5px;max-width:800px;margin:auto}
+@media(max-width:720px){.gr,.wn,.steps{grid-template-columns:1fr}.fi{grid-template-columns:1fr 1fr}.hc{display:none}.ab{grid-template-columns:1fr}.sd{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cd,.acb,.chev{transition:none}}
+</style><div class="v">
+<header><div class="w bar"><button class="brand" id="brand"><span class="lg">T</span>T201</button><span class="sp"></span><button class="pill">Sign In</button><button class="pill pri">Get Started</button><button class="pill" id="theme" aria-label="Toggle theme">◐</button></div></header>
+<main class="w"><div id="home">
+<section class="hero"><button class="ann" id="go"><b>New</b>v1.6.0 is out · See what’s new →</button><div class="eb">— BUILT FOR TITO SOLUTIONS —</div>
+<h1>Manage profiles, history, and HR data <em>— all in one place.</em></h1>
+<p><b>T201</b> is the employee records platform for Tito Solutions teams. Secure, role-based, and audit-ready from day one.</p>
+<div class="em"><span>you@tito.solutions</span><button class="pill pri">Get Started →</button></div>
+<div class="ft3"><span>◯ Role-based access</span><span>☺ Employee profiles</span><span>▤ Audit trail</span></div>
+<div class="app"><div class="ah"><i></i><i></i><i></i>&nbsp;T201 · Employee Records</div><div class="ab"><div class="sd"><div>Dashboard</div><div class="on">Employees</div><div>Leaves</div><div>Calendar</div><div>Documents</div></div>
+<div class="ls"><div class="ro"><span class="a">MS</span><div>Marc Skye<small>Senior · Backend Engineer</small></div><span>Engineering</span><span class="tg">Regular</span></div><div class="ro"><span class="a">MC</span><div>Madam Clove<small>Junior · QA Engineer</small></div><span>Engineering</span><span class="tg w">Probationary</span></div><div class="ro"><span class="a">JR</span><div>Joshua Revna<small>Lead · Designer</small></div><span>Design</span><span class="tg">Regular</span></div></div></div>
+<div class="hc"><small>Headcount trend</small><b>248</b><svg viewBox="0 0 120 28" preserveAspectRatio="none"><polyline points="0,24 20,20 40,21 60,14 80,15 100,8 120,3" fill="none" stroke="var(--gt)" stroke-width="2"/></svg></div></div></section>
+<div class="tr"><small>TRUSTED ACROSS TEAMS</small><span>Engineering</span><span>Operations</span><span>People Ops</span><span>HR</span><span>Finance</span></div>
+
+<section class="s"><div class="eb" style="color:var(--gt)">PLATFORM</div><h2>Built to grow with your <em>people operations</em></h2>
+<div class="gr"><div class="cd"><span class="ic">▣</span> <span class="n">01</span><h3>Centralized records</h3><p>Profiles, documents, and employment history in one system, with no more scattered spreadsheets.</p><div class="mi"><span>Employment contract</span><span class="tg">Verified</span></div><div class="mi"><span>Government IDs</span><span class="tg">Verified</span></div><div class="mi"><span>NBI clearance</span><span class="tg w">Pending</span></div></div>
+<div class="cd"><span class="ic">⛨</span> <span class="n">02</span><h3>Secure by design</h3><p>Role-based permissions and audit logging protect sensitive employee data at every level.</p><div class="mi"><span>Super Admin</span><i class="sw"></i></div><div class="mi"><span>HR Admin</span><i class="sw"></i></div><div class="mi"><span>Employee</span><i class="sw off"></i></div></div></div></section>
+
+<section class="s"><h2>Get set up on <em>T201</em> in three steps</h2><div class="steps">
+<div class="st"><small><span>01</span><span>DAY 1</span></small><h3>Create your account</h3><p>Sign up and configure roles and permissions for your HR and operations team.</p></div>
+<div class="st"><small><span>02</span><span>WEEK 1</span></small><h3>Add your employees</h3><p>Build profiles with contact details, department, role, and employment status.</p></div>
+<div class="st"><small><span>03</span><span>ONGOING</span></small><h3>Manage and report</h3><p>Track history, run headcount reports, and keep every change audit-ready.</p></div></div></section>
+</div><div id="rel" class="hide rl"><button class="back" id="back">← Back to home</button><h2 style="margin-bottom:6px">What’s new in <em>T201</em></h2><p class="sbt">Release notes for every version of T201.</p><div id="feed"></div>
+<div class="cta"><b>Ready to try it? Sign in with your Google Workspace account.</b><button class="pill pri" id="si">Sign in</button></div></div></main>
+<footer><div class="w"><div class="fi"><div class="brand"><span class="lg">T</span>T201</div><div><h6>PRODUCT</h6><a>Employees</a><a>Records</a><a>Reports</a></div><div><h6>COMPANY</h6><a>About Tito Solutions</a><a>Contact</a></div><div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><a class="hl" id="fn">What’s New</a></div><div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div></div><div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer>
+</div></template>
+<template id="tpl6"><style>
+:host{--bg:#f1f3f2;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050505;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050505;color-scheme:dark}
+.v{min-height:calc(100vh - var(--bar));margin:0;background:var(--bg)}
+.host[hidden]{display:none}
+</style><div class="v">
+<div class="host" id="hl"></div><div class="host" id="ha" hidden></div>
+<template id="tl"><style>
+:host{--bg:#f6f7f6;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e1e7e3;--g:#12844c;--gt:#12844c;--gl:#e4f3ea;--on:#fff;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050505;--surface:#0e0f0e;--ink:#f3f4f3;--mute:#8d9691;--line:#1d201e;--g:#1f9a5f;--gt:#3ecf8e;--gl:#0f2a1c;--on:#fff;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050505;--surface:#0e0f0e;--ink:#f3f4f3;--mute:#8d9691;--line:#1d201e;--g:#1f9a5f;--gt:#3ecf8e;--gl:#0f2a1c;--on:#fff;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+.v{min-height:calc(100vh - var(--bar,0px));margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px;line-height:1.55}
+*{box-sizing:border-box}button,a{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+header{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);position:sticky;top:var(--bar,env(safe-area-inset-top,0px));z-index:5}
+.w{max-width:800px;margin:auto;padding:0 20px}
+.bar{display:flex;align-items:center;gap:8px;height:50px}.sp{flex:1}
+.lg{width:24px;height:24px;border-radius:7px;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700}
+.pill.pri{background:var(--g);border-color:var(--g);color:#fff}
+.hero{text-align:center;padding:48px 0 30px}
+.ann{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 14px 4px 5px;font-size:12px;font-weight:600;margin-bottom:22px}
+.ann b{background:var(--g);color:#fff;border-radius:99px;padding:1px 9px;font-size:11px}.ann:hover{border-color:var(--g)}
+.eb{font-size:10px;letter-spacing:.16em;color:var(--gt);font-weight:600;margin-bottom:14px}
+h1{font-size:clamp(38px,8vw,68px);line-height:.98;letter-spacing:-.05em;font-weight:800;margin:0 auto 18px;max-width:11em}h1 em,h2 em{font-style:normal;color:var(--gt)}
+.hero p{color:var(--mute);max-width:46ch;margin:0 auto 22px;font-size:15px}.hero p b{color:var(--ink)}
+.em{display:flex;max-width:380px;margin:auto;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 5px 5px 18px;align-items:center}
+.em span{flex:1;text-align:left;color:var(--mute);font-size:13px}
+.ft3{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;color:var(--mute);font-size:11.5px;margin-top:16px}
+.app{position:relative;margin:34px 0 0;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:visible}
+.ah{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-size:11px;color:var(--mute)}.ah i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.ab{display:grid;grid-template-columns:140px 1fr;min-height:190px}
+.sd{border-right:1px solid var(--line);padding:12px 10px;font-size:11.5px;color:var(--mute)}.sd div{padding:6px 10px;border-radius:8px;margin-bottom:3px}.sd .on{background:var(--g);color:#fff;font-weight:700}
+.ls{padding:12px 14px}.ro{display:flex;align-items:center;gap:12px;padding:9px 6px;border-radius:10px;font-size:12px}.ro:first-child{background:var(--bg)}
+.ro .a{width:26px;height:26px;border-radius:50%;background:var(--gl);color:var(--gt);display:grid;place-items:center;font-size:10px;font-weight:800}.ro div{flex:1}.ro small{display:block;color:var(--mute);font-size:10.5px}
+.tg{font-size:10px;font-weight:700;border-radius:99px;padding:1px 9px;background:var(--gl);color:var(--gt)}.tg.w{background:var(--abg);color:var(--amber)}
+.hc{position:absolute;right:-18px;top:34px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;width:150px;box-shadow:0 14px 34px rgba(0,0,0,.25)}
+.hc small{color:var(--mute);font-size:10.5px}.hc b{display:block;font-size:22px}.hc svg{width:100%;height:28px}
+.tr{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:26px 0;margin-top:56px}
+.tr small{font-size:10px;letter-spacing:.14em;color:var(--mute);flex:1;min-width:140px}.tr span{color:var(--mute);font-size:13px;font-weight:500}
+section.s{padding:64px 0 8px}
+h2{font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.04em;font-weight:800;margin:0 0 26px;max-width:14em}
+.gr{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}
+.cd{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1)}.cd:hover{border-color:var(--g);transform:translateY(-3px)}
+.cd .n{font-size:10px;color:var(--mute);letter-spacing:.1em}.cd h3{margin:8px 0 6px;font-size:18px;letter-spacing:-.02em}.cd p{margin:0 0 14px;color:var(--mute);font-size:12.5px}
+.ic{width:30px;height:30px;border-radius:9px;background:var(--gl);color:var(--gt);display:grid;place-items:center;margin-bottom:6px}
+.mi{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12px;display:flex;justify-content:space-between;margin-bottom:6px}
+.sw{width:22px;height:12px;border-radius:9px;background:var(--g);position:relative}.sw::after{content:"";position:absolute;right:2px;top:2px;width:8px;height:8px;border-radius:50%;background:#fff}.sw.off{background:var(--line)}.sw.off::after{right:auto;left:2px}
+.m{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--mute)}.m b{color:var(--ink)}
+.lt{background:var(--g);color:#fff;border-radius:99px;padding:1px 10px;font-size:11px;font-weight:700}
+.k{font-style:normal;font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;min-width:58px;text-align:center;flex:none}
+.c-new{background:var(--gl);color:var(--gt)}.c-imp{background:var(--bbg);color:var(--blue)}.c-fix{background:var(--abg);color:var(--amber)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:60px}
+.st{border-top:1px solid var(--line);padding-top:12px}.st:first-child{border-color:var(--g)}.st small{font-size:10px;letter-spacing:.1em;color:var(--mute);display:flex;justify-content:space-between}
+.st h3{margin:14px 0 6px;font-size:16px}.st p{margin:0;color:var(--mute);font-size:12.5px}
+.rl{max-width:720px;margin:auto;padding:40px 0 70px}.back{color:var(--gt);font-weight:700;margin-bottom:16px}.sbt{color:var(--mute);margin:0 0 22px}
+.acc{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden;transition:border-color .3s}.acc.open{border-color:var(--g)}
+.ach{display:flex;align-items:center;gap:12px;width:100%;padding:16px 18px;text-align:left}.ach:hover{background:var(--bg)}
+.ct{flex:1;min-width:0}.at{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em}
+.chev{font-size:20px;color:var(--mute);transition:transform .3s}.acc.open .chev{transform:rotate(180deg)}
+.acb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)}.acc.open .acb{grid-template-rows:1fr}
+.abi2{overflow:hidden;padding:0 18px}.acc.open .abi2{padding-bottom:16px}.abi2 p{margin:0 0 4px;color:var(--mute)}.abi2 h4{margin:14px 0 4px;font-size:13px}
+.abi2 ul{list-style:none;margin:0;padding:0}.abi2 li{padding:8px 0;border-top:1px solid var(--line);font-size:13px}
+.cta{margin-top:20px;padding:16px;border-radius:14px;background:var(--gl);display:flex;gap:12px;align-items:center;flex-wrap:wrap}.cta b{flex:1;min-width:180px}
+.hide{display:none!important}#hout,#hin{display:contents}
+footer{border-top:1px solid var(--line)}
+.fi{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:16px;padding:40px 20px 24px;font-size:12px}
+.fi h6{margin:0 0 10px;font-size:10px;letter-spacing:.14em}.fi a{display:block;color:var(--mute);margin-bottom:7px}.fi a.hl{color:var(--gt);font-weight:700}
+.copy{border-top:1px solid var(--line);padding:16px 20px;color:var(--mute);font-size:11.5px;max-width:800px;margin:auto}
+@media(max-width:720px){.gr,.wn,.steps{grid-template-columns:1fr}.fi{grid-template-columns:1fr 1fr}.hc{display:none}.ab{grid-template-columns:1fr}.sd{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cd,.acb,.chev{transition:none}}
+</style><div class="v">
+<header><div class="w bar"><button class="brand" id="brand"><span class="lg">T</span>T201</button><span class="sp"></span><span id="hout"><button class="pill" id="si0">Sign In</button><button class="pill pri" id="gs0">Get Started</button></span><span id="hin" class="hide"><button class="pill pri" id="dbh">Dashboard</button></span><button class="pill" id="theme" aria-label="Toggle theme">◐</button></div></header>
+<main class="w"><div id="home">
+<section class="hero"><button class="ann" id="go"><b>New</b>v1.6.0 is out · See what’s new →</button><div class="eb">— BUILT FOR TITO SOLUTIONS —</div>
+<h1>Manage profiles, history, and HR data <em>— all in one place.</em></h1>
+<p><b>T201</b> is the employee records platform for Tito Solutions teams. Secure, role-based, and audit-ready from day one.</p>
+<div class="em"><span>you@tito.solutions</span><button class="pill pri" id="gs1">Get Started →</button></div>
+<div class="ft3"><span>◯ Role-based access</span><span>☺ Employee profiles</span><span>▤ Audit trail</span></div>
+<div class="app"><div class="ah"><i></i><i></i><i></i>&nbsp;T201 · Employee Records</div><div class="ab"><div class="sd"><div>Dashboard</div><div class="on">Employees</div><div>Leaves</div><div>Calendar</div><div>Documents</div></div>
+<div class="ls"><div class="ro"><span class="a">MS</span><div>Marc Skye<small>Senior · Backend Engineer</small></div><span>Engineering</span><span class="tg">Regular</span></div><div class="ro"><span class="a">MC</span><div>Madam Clove<small>Junior · QA Engineer</small></div><span>Engineering</span><span class="tg w">Probationary</span></div><div class="ro"><span class="a">JR</span><div>Joshua Revna<small>Lead · Designer</small></div><span>Design</span><span class="tg">Regular</span></div></div></div>
+<div class="hc"><small>Headcount trend</small><b>248</b><svg viewBox="0 0 120 28" preserveAspectRatio="none"><polyline points="0,24 20,20 40,21 60,14 80,15 100,8 120,3" fill="none" stroke="var(--gt)" stroke-width="2"/></svg></div></div></section>
+<div class="tr"><small>TRUSTED ACROSS TEAMS</small><span>Engineering</span><span>Operations</span><span>People Ops</span><span>HR</span><span>Finance</span></div>
+
+<section class="s"><div class="eb" style="color:var(--gt)">PLATFORM</div><h2>Built to grow with your <em>people operations</em></h2>
+<div class="gr"><div class="cd"><span class="ic">▣</span> <span class="n">01</span><h3>Centralized records</h3><p>Profiles, documents, and employment history in one system, with no more scattered spreadsheets.</p><div class="mi"><span>Employment contract</span><span class="tg">Verified</span></div><div class="mi"><span>Government IDs</span><span class="tg">Verified</span></div><div class="mi"><span>NBI clearance</span><span class="tg w">Pending</span></div></div>
+<div class="cd"><span class="ic">⛨</span> <span class="n">02</span><h3>Secure by design</h3><p>Role-based permissions and audit logging protect sensitive employee data at every level.</p><div class="mi"><span>Super Admin</span><i class="sw"></i></div><div class="mi"><span>HR Admin</span><i class="sw"></i></div><div class="mi"><span>Employee</span><i class="sw off"></i></div></div></div></section>
+
+<section class="s"><h2>Get set up on <em>T201</em> in three steps</h2><div class="steps">
+<div class="st"><small><span>01</span><span>DAY 1</span></small><h3>Create your account</h3><p>Sign up and configure roles and permissions for your HR and operations team.</p></div>
+<div class="st"><small><span>02</span><span>WEEK 1</span></small><h3>Add your employees</h3><p>Build profiles with contact details, department, role, and employment status.</p></div>
+<div class="st"><small><span>03</span><span>ONGOING</span></small><h3>Manage and report</h3><p>Track history, run headcount reports, and keep every change audit-ready.</p></div></div></section>
+</div><div id="rel" class="hide rl"><button class="back" id="back">← Back to home</button><h2 style="margin-bottom:6px">What’s new in <em>T201</em></h2><p class="sbt">Release notes for every version of T201.</p><div id="feed"></div>
+</div></main>
+<footer><div class="w"><div class="fi"><div class="brand"><span class="lg">T</span>T201</div><div><h6>PRODUCT</h6><a>Employees</a><a>Records</a><a>Reports</a></div><div><h6>COMPANY</h6><a>About Tito Solutions</a><a>Contact</a></div><div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><a class="hl" id="fn">What’s New</a></div><div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div></div><div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer>
+</div></template>
+<template id="ta"><style>
+:host{--bg:#f1f3f2;--surface:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e3e8e5;--g:#12844c;--gl:#e4f3ea;--on:#fff;--amber:#b7791f;--abg:#fdf3dc;--blue:#2b5fb3;--bbg:#e5edf9;color-scheme:light}
+@media (prefers-color-scheme:dark){:host(:not([data-theme="light"])){--bg:#050606;--surface:#0b0d0c;--ink:#f2f5f3;--mute:#8b9892;--line:#1f2523;--g:#2fc79a;--gl:#11281f;--on:#04251a;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}}
+:host([data-theme="dark"]){--bg:#050606;--surface:#0b0d0c;--ink:#f2f5f3;--mute:#8b9892;--line:#1f2523;--g:#2fc79a;--gl:#11281f;--on:#04251a;--amber:#f0b23c;--abg:#2b2111;--blue:#7aa7f0;--bbg:#16233d;color-scheme:dark}
+
+.v{min-height:calc(100vh - var(--bar,0px));margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:13.5px;line-height:1.5}
+*{box-sizing:border-box}button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+button:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.app{display:flex;gap:10px;padding:8px}
+.side{width:236px;flex:none;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 10px;position:sticky;top:calc(var(--bar,0px) + 8px);height:calc(100vh - var(--bar,0px) - 16px);overflow:auto}
+.sh{display:flex;align-items:center;gap:10px;padding:2px 8px 10px;font-weight:800;font-size:15px}
+.lg{width:26px;height:26px;border-radius:8px;background:var(--g);color:var(--on);display:grid;place-items:center;font-size:13px}
+.side h6{margin:14px 8px 4px;font-size:10.5px;letter-spacing:.08em;color:var(--mute);font-weight:600}
+.it{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:12px;font-weight:500;text-align:left;color:var(--ink)}
+.it i{font-style:normal;width:16px;text-align:center;color:var(--mute);font-size:13px}.it:hover{background:var(--bg)}
+.it .n{margin-left:auto;background:var(--gl);color:var(--g);border-radius:99px;font-size:10.5px;font-weight:700;padding:0 7px}
+.it .nw{margin-left:auto;background:var(--g);color:var(--on);border-radius:99px;font-size:9.5px;font-weight:800;padding:0 7px;letter-spacing:.04em}
+.it.on{background:var(--g);color:var(--on);font-weight:700}.it.on i{color:var(--on)}
+.sub{padding-left:16px;margin-left:16px;border-left:1px solid var(--line)}.sub .it{color:var(--mute);padding:6px 10px}
+.main{flex:1;min-width:0}
+.top{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 12px;margin-bottom:10px}
+.search{flex:1;border:1px solid var(--line);border-radius:99px;padding:7px 14px;color:var(--mute)}
+.ic{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;position:relative}.ic:hover{background:var(--bg)}
+.bd{position:absolute;top:0;right:-2px;background:#e5484d;color:#fff;border-radius:99px;font-size:9px;font-weight:700;padding:0 5px}
+.vas{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:99px;padding:3px 12px 3px 4px;line-height:1.15}
+.vas small{display:block;font-size:8.5px;letter-spacing:.08em;color:var(--mute)}.vas b{font-size:12px}
+.av{width:30px;height:30px;border-radius:50%;background:var(--g);color:var(--on);display:grid;place-items:center;font-weight:800;font-size:11px}
+.pnl{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px 40px;min-height:calc(100vh - var(--bar,0px) - 80px)}
+h1{font-size:26px;letter-spacing:-.03em;margin:0;font-weight:800}.sb{color:var(--mute);margin:0 0 16px}
+.hd{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}.hd>div{flex:1}
+.pill{border:1px solid var(--line);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:600;background:var(--surface)}
+.cd{border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.ch{display:flex;align-items:center;gap:10px;padding:12px 14px}.ch b{display:block}.ch small{color:var(--mute)}
+.bi{width:32px;height:32px;border-radius:10px;background:var(--gl);color:var(--g);display:grid;place-items:center;flex:none}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line)}.row>div{flex:1;min-width:0}.row small{display:block;color:var(--mute)}
+.tg{font-size:10.5px;font-weight:700;border-radius:99px;padding:1px 9px;background:var(--gl);color:var(--g);margin-left:6px}.tg.w{background:var(--abg);color:var(--amber)}
+.btn{background:var(--g);color:var(--on);border-radius:99px;padding:7px 16px;font-weight:700;font-size:12.5px;white-space:nowrap}
+.btn.o{background:none;border:1px solid var(--line);color:var(--ink)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt{width:38px;height:38px;border:1px solid var(--line);border-radius:9px;text-align:center;font-size:9px;font-weight:800;line-height:1.1;padding-top:5px;color:var(--g)}.dt b{display:block;font-size:14px;color:var(--ink)}
+.emp{text-align:center;padding:34px 10px;color:var(--mute)}
+.hide{display:none!important}
+.acc{border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}.acc.open{border-color:var(--g)}
+.ah{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;text-align:left}.ah:hover{background:var(--bg)}
+.ah .m{color:var(--mute);font-size:12px;display:block}.ah .t{font-weight:700;font-size:15px;display:block}.col{flex:1;min-width:0}
+.chev{font-size:18px;color:var(--mute);transition:transform .3s}.acc.open .chev{transform:rotate(180deg)}
+.ab{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}.acc.open .ab{grid-template-rows:1fr}
+.abi{overflow:hidden;padding:0 16px}.acc.open .abi{padding-bottom:14px}
+.abi ul{list-style:none;margin:0;padding:0}.abi li{display:flex;gap:8px;align-items:baseline;padding:7px 0;border-top:1px solid var(--line)}
+.k{font-style:normal;font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;min-width:58px;text-align:center;flex:none}
+.c-new{background:var(--gl);color:var(--g)}.c-imp{background:var(--bbg);color:var(--blue)}.c-fix{background:var(--abg);color:var(--amber)}
+.ov{position:fixed;top:var(--bar,0px);left:0;right:0;bottom:0;background:rgba(3,8,6,.6);backdrop-filter:blur(3px);display:grid;place-items:center;z-index:30;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;padding:16px}
+.ov.show{opacity:1;visibility:visible}
+.md{position:relative;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;width:100%;max-width:780px;padding:42px 60px 28px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:translateY(14px) scale(.98);transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.show .md{transform:none}
+.x{position:absolute;top:14px;right:16px;width:30px;height:30px;border-radius:50%;font-size:20px;color:var(--mute);display:grid;place-items:center}.x:hover{background:var(--bg)}
+.md h2{margin:0 0 10px;text-align:center;font-size:24px;letter-spacing:-.02em}.md p{margin:0;text-align:center;color:var(--mute);font-size:14px;max-width:48ch;margin-inline:auto}
+.ver{text-align:center;margin-bottom:10px}
+.ill{height:290px;position:relative;width:100%;border:0;text-align:left;cursor:pointer;transition:transform .4s cubic-bezier(.22,1,.36,1);border-radius:12px;background:linear-gradient(135deg,var(--gl),transparent 70%),var(--bg);display:grid;place-items:center;margin:20px 0 22px;overflow:hidden}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;width:min(82%,460px);box-shadow:0 14px 34px rgba(0,0,0,.18);font-size:12px}
+.mini .r{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line)}.mini .r:first-child{border:0}.mini .r span{flex:1}
+.ck{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--g);flex:none;display:grid;place-items:center;font-size:10px;color:var(--on)}.ck.on{background:var(--g)}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}.st div{background:var(--bg);border-radius:10px;padding:8px;text-align:center;color:var(--mute);font-size:11px}.st b{display:block;font-size:20px;color:var(--ink)}
+.pr{height:6px;border-radius:9px;background:var(--line)}.pr i{display:block;height:100%;border-radius:9px;background:var(--g)}
+.chs{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}.chs span{font-size:11px;font-weight:700;border-radius:6px;padding:1px 8px}
+.ft{display:flex;justify-content:center}
+.ill:hover{transform:scale(1.012)}.hint{position:absolute;bottom:12px;right:12px;background:var(--g);color:var(--on);border-radius:99px;padding:4px 13px;font-size:11.5px;font-weight:700}
+.ar{position:absolute;top:50%;width:42px;height:42px;margin-top:-30px;border-radius:50%;background:var(--surface);border:1px solid var(--line);font-size:24px;line-height:1;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:2;transition:opacity .3s,transform .3s cubic-bezier(.22,1,.36,1)}
+.ar:hover{transform:scale(1.1)}.ar:active{transform:scale(.94)}.ar[disabled]{opacity:0;pointer-events:none}.pv{left:-21px}.nx2{right:-21px}
+.sub .it.on{color:var(--on)}
+.lg0{min-height:calc(100vh - var(--bar,0px))}
+.sh0{background:var(--surface);border-bottom:1px solid var(--line)}.sbar{max-width:960px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:10px}
+.sp{flex:1}.brand{display:flex;align-items:center;gap:8px;font-weight:700}.pri2{background:var(--g);border-color:var(--g);color:var(--on)}
+.swrap{max-width:960px;margin:auto;padding:24px 20px 40px}
+.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.sl{background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 28px),linear-gradient(150deg,#0a2a1c,#0e3b27 55%,#14663d);color:#fff;padding:32px 30px;min-width:0}
+.seb{font-size:10.5px;letter-spacing:.14em;color:#6fe0a6;font-weight:600}
+.sl h1{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:12px 0;font-weight:800}.sl h1 em{font-style:normal;color:#7de3ae}
+.sl>p{color:#cfe8da;max-width:42ch;margin:0 0 20px;font-size:13px}
+.s0{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+.fc{display:flex;gap:10px;background:var(--surface);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:11px;color:var(--mute)}.fc b{display:block;font-size:12px;color:var(--ink)}
+.fc i{font-style:normal;width:26px;height:26px;border-radius:8px;background:var(--gl);color:var(--g);display:grid;place-items:center;flex:none}
+.dc{background:var(--surface);border-radius:14px;padding:12px;font-size:11px;color:var(--mute);position:relative;margin-top:26px}.dc>b{display:block;color:var(--ink);font-size:12px}
+.au{position:absolute;right:-4px;top:-26px;background:#0b0b0b;color:#fff;border-radius:10px;padding:6px 10px;font-size:10px;border:1px solid #2a2a2a}.au small{display:block;font-size:8.5px;letter-spacing:.1em;color:#9a9a9a}.au b{color:#fff}
+.pbr{display:flex;gap:4px;margin:8px 0}.pbr s{height:3px;flex:1;background:var(--g);border-radius:9px}.pbr s.e{background:var(--line)}
+.drr{display:flex;justify-content:space-between;align-items:center;padding:7px 8px;border-radius:8px;background:rgba(127,127,127,.1);margin-bottom:5px;color:var(--ink);font-weight:600}
+.drr em{font-style:normal;font-size:9.5px;padding:1px 7px;border-radius:99px;background:var(--gl);color:var(--g)}.drr em.w{background:var(--abg);color:var(--amber)}.drr em.n{background:var(--line);color:var(--mute)}
+.sr{padding:44px 40px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.sr h2{font-size:clamp(28px,4vw,38px);line-height:1.05;letter-spacing:-.04em;margin:16px 0 8px;font-weight:800}.ss{color:var(--mute);font-size:12.5px;margin:0 0 20px}
+.hr0{width:100%;border-top:1px solid var(--line);padding-top:14px;color:var(--mute);font-size:12px}.hr0 b{color:var(--g)}.vr{margin-top:12px;font-size:11px;color:var(--mute)}
+.ftr{background:var(--surface);border-top:1px solid var(--line)}.ftr .fi{max-width:960px;margin:auto;padding:22px 20px;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:16px;font-size:12px}
+.fi h6{margin:0 0 8px;font-size:10.5px;letter-spacing:.12em}.fi a{display:block;color:var(--mute);margin-bottom:6px}.copy{max-width:960px;margin:auto;padding:0 20px 20px;color:var(--mute);font-size:11px}
+@media(max-width:780px){.split{grid-template-columns:minmax(0,1fr)}.s0{grid-template-columns:1fr}.sr{padding:32px 20px}.ftr .fi{grid-template-columns:1fr 1fr}}
+.gbtn{width:100%;border:1px solid var(--line);border-radius:99px;padding:12px;font-weight:600}.gbtn:hover{border-color:var(--g)}
+.chs2{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:14px 0 18px}.chs2 span{border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:11px;color:var(--mute)}
+@media(max-width:900px){.pv{left:4px}.nx2{right:4px}.ill{height:250px}}
+.dots{display:flex;gap:7px}.dots button{width:8px;height:8px;border-radius:99px;background:var(--line);transition:width .4s cubic-bezier(.22,1,.36,1),background .3s}.dots button.on{width:22px;background:var(--g)}
+.lnk{margin-left:auto;color:var(--g);font-weight:700;font-size:12.5px}.lnk:hover{text-decoration:underline}
+.nx{background:var(--g);color:var(--on);border-radius:8px;padding:10px 26px;font-weight:700}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.a>*{animation:rise .5s cubic-bezier(.22,1,.36,1) both}.a>:nth-child(2){animation-delay:.05s}.a>:nth-child(3){animation-delay:.1s}.a>:nth-child(4){animation-delay:.15s}
+@media(max-width:900px){.side{display:none}.g2{grid-template-columns:1fr}.md{padding:30px 20px 20px}.lnk{display:none}.nx{margin-left:auto}}
+@media(prefers-reduced-motion:reduce){.md,.ov,.dots button,.ab,.chev{transition:none}.a>*{animation:none}}
+</style><div class="v">
+<div id="login" class="lg0"><header class="sh0"><div class="sbar"><button class="brand" id="lbrand"><span class="lg">T</span>T201</button><span class="sp"></span><button class="pill">Sign In</button><button class="pill pri2">Sign Up</button><button class="pill" id="theme0" aria-label="Toggle theme">◐</button></div></header>
+<div class="swrap"><div class="split"><div class="sl"><div class="seb">— EMPLOYEE RECORDS PLATFORM</div><h1>Your team’s HR data, <em>organized and secure.</em></h1><p>Sign in with your organization Google account to access profiles, employment history, and HR records.</p>
+<div class="s0"><div><div class="fc"><i>👥</i><span><b>Employee profiles</b>Centralized records for every team member in one secure place.</span></div><div class="fc"><i>↺</i><span><b>Employment history</b>Track role changes, assignments, and organizational moves over time.</span></div><div class="fc"><i>▤</i><span><b>HR documents</b>Manage required documents, expiry dates, and renewal reminders.</span></div></div>
+<div class="dc"><div class="au"><small>AUDIT TRAIL</small><b>✓ Profile updated</b><small>Today · 2:14 PM</small></div><b>Required documents</b>Ana Reyes · EMP-0042<div class="pbr"><s></s><s></s><s></s><s class="e"></s></div><div class="drr">Government ID<em>Verified</em></div><div class="drr">Employment contract<em class="n">On file</em></div><div class="drr">Medical certificate<em class="w">Due in 14 days</em></div></div></div></div>
+<div class="sr"><div class="bi" style="width:42px;height:42px">👥</div><h2>Welcome back</h2><p class="ss">Continue with Google to access your workspace.</p><button class="gbtn" id="gbtn">G&nbsp; Continue with Google</button><div class="chs2"><span>Secure SSO</span><span>Team access</span><span>Google Workspace</span></div><div class="hr0">Don’t have an account? <b>Sign up</b><br><br>By continuing, you agree to use your organization’s Google Workspace credentials.</div><div class="vr">v1.6.0</div></div></div></div>
+<footer class="ftr"><div class="fi"><div class="brand"><span class="lg">T</span>T201</div><div><h6>PRODUCT</h6><a>Employees</a><a>Records</a><a>Reports</a></div><div><h6>COMPANY</h6><a>About Tito Solutions</a><a>Contact</a></div><div><h6>RESOURCES</h6><a>Community</a><a>Help Center</a><a>Contact</a></div><div><h6>LEGAL</h6><a>Privacy Policy</a><a>Terms of Service</a><a>Cookies</a></div></div><div class="copy">© 2026 Tito Solutions. All rights reserved.</div></footer></div>
+<div class="app hide" id="appw">
+<aside class="side"><div class="sh"><span class="lg">▦</span>T201</div>
+<h6>OVERVIEW</h6>
+<button class="it on" data-p="dash"><i>▦</i>Dashboard</button><button class="it"><i>✉</i>Messages</button><button class="it"><i>◷</i>ND and OT<i style="margin-left:auto">🔒</i></button>
+<h6>PEOPLE</h6><button class="it"><i>☺</i>Employee</button><button class="it"><i>✎</i>Evaluations</button><button class="it"><i>⛨</i>Roles &amp; access</button><button class="it"><i>✈</i>Leaves</button>
+<button class="it"><i>⚠</i>Incidents<span class="n">1</span></button><div class="sub"><button class="it">Report an Incident</button><button class="it">My Reports</button><button class="it">My Notices<span class="n">1</span></button></div>
+<button class="it"><i>▣</i>Schedules</button><button class="it"><i>✓</i>Onboarding</button>
+<h6>RECORDS</h6><button class="it"><i>❏</i>Policies<span class="n">3</span></button><button class="it"><i>▤</i>Documents</button><button class="it"><i>☰</i>Audit log</button></aside>
+<div class="main">
+<div class="top"><div class="search">⌕ Search anything here...</div><button class="ic" aria-label="Notifications">🔔<span class="bd">4</span></button><button class="ic" id="theme" aria-label="Toggle theme">☾</button>
+<div class="vas"><div><small>VIEWING AS</small><b>Maria · Reporter</b></div></div><button class="av" id="avt" title="Sign out" aria-label="Sign out">MS</button></div>
+<div class="pnl">
+<section id="dash"><div class="hd"><div><h1>Welcome back, Maria!</h1><p class="sb">Here’s what’s happening in your workspace.</p></div><span class="pill">30d · <b>60d</b> · 90d</span></div>
+<div class="cd"><div class="ch"><span class="bi">🔔</span><div><b>Announcements</b><small>New policies and memoranda · 3 waiting for your acknowledgment</small></div><span class="btn" style="margin-left:auto">Go to Policies →</span></div>
+<div class="row"><div><b>Year-End Holiday Pay and Special Non-Working Days</b><span class="tg">Memorandum</span><span class="tg w">New · needs acknowledgment</span><small>Posted Oct 10, 2026 · Issued by Human Resources</small></div><span class="btn">Read &amp; acknowledge</span></div>
+<div class="row"><div><b>Reminder: Incident Reporting Channel and Non-Retaliation</b><span class="tg">Memorandum</span><span class="tg w">New · needs acknowledgment</span><small>Posted Oct 1, 2026 · Issued by Human Resources</small></div><span class="btn">Read &amp; acknowledge</span></div>
+<div class="row"><div><b>Work Arrangements During Severe Weather and Calamities</b><span class="tg">Memorandum</span><small>Posted Sep 15, 2026 · Issued by Human Resources</small></div><span class="btn o">View</span></div></div>
+<div class="g2"><div class="cd"><div class="ch"><span class="bi">▣</span><div><b>Contract Milestones</b><small>Your regularization and work anniversary dates</small></div></div><div class="emp"><b style="color:var(--ink)">You’re all caught up!</b><br>No contract milestones in the next 60 days.</div></div>
+<div class="cd"><div class="ch"><span class="bi">▣</span><div><b>Upcoming Events</b><small>Calendar events and holidays</small></div><span class="btn o" style="margin-left:auto">View Calendar</span></div>
+<div class="row"><span class="dt">OCT<b>16</b></span><div><b>Engineering Adjusted Holiday</b><small>Regular Holiday · Friday</small></div></div>
+<div class="row"><span class="dt">NOV<b>1</b></span><div><b>All Saints’ Day</b><small>Special Non-Working Day · Sunday</small></div></div>
+<div class="row"><span class="dt">NOV<b>30</b></span><div><b>Bonifacio Day</b><small>Regular Holiday · Monday</small></div></div></div></div></section>
+</div></div></div>
+
+<div class="ov" id="ov"><div class="md" role="dialog" aria-modal="true" aria-labelledby="mt">
+<button class="x" id="cl" aria-label="Close">×</button><button class="ar pv" id="pv" aria-label="Previous" disabled>‹</button><button class="ar nx2" id="nx" aria-label="Next">›</button>
+<div id="sc"></div>
+<div class="ft"><div class="dots" id="dots"></div></div></div></div>
+</div></template>
+</div></template>
 <script>
 function v1(root,host){
 const R=[
@@ -368,11 +835,125 @@ vp.onpointerup=vp.onpointercancel=()=>{if(!drag)return;drag=false;tr.style.trans
 const re=()=>{fit();go(i)};addEventListener("resize",re);addEventListener("load",re);document.fonts&&document.fonts.ready.then(re);fit();go(0);
 $("theme").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
 }
-const hosts=[1,2,3].map(n=>document.getElementById("h"+n)),fns=[v1,v2,v3],tabs=[...document.querySelectorAll(".seg button")];
+function v4(root,host){
+const R=[
+{v:"1.6.0",d:"Oct 20, 2026",t:"Faster leave approvals",new:["Bulk approve or decline leave requests","Leave Balance shows used, pending and remaining days","Acknowledge memos on the Company Policies page"],imp:["Department filter remembers your last selection","Faster loading for employee profiles"],fix:["Pending leave counts update right after approval","Fixed wrong dates on mobile leave requests"]},
+{v:"1.5.3",d:"Oct 6, 2026",t:"Salary history and document reminders",new:["Expiry badges for HR documents, such as Due in 14 days"],imp:["Salary history table is easier to scan"],fix:["Fixed audit trail showing the wrong time zone"]},
+{v:"1.5.0",d:"Sep 18, 2026",t:"Company Policies page",new:["Company Policies page with required acknowledgment"],imp:["Cleaner dashboard layout"],fix:[]}];
+const S=[
+{t:"What’s new in T201",d:"Version 1.6.0 brings faster leave approvals, a clearer leave balance and easier memo acknowledgment.",i:`<div class="mini"><div class="r"><span><span class="tg" style="margin:0 6px 0 0">Latest</span><b>T201 v1.6.0</b> · Oct 20, 2026</span></div><b style="font-size:15px">Faster leave approvals</b><div class="chs"><span class="c-new">3 new</span><span class="c-imp">2 improved</span><span class="c-fix">2 fixed</span></div></div>`},
+{t:"Approve leave requests in bulk",d:"Managers can approve or decline several leave requests at once, which saves time on busy days.",i:`<div class="mini"><div class="r"><i class="ck on">✓</i><span>Ana Reyes · Vacation</span><small>Whole day</small></div><div class="r"><i class="ck on">✓</i><span>Leo Cruz · Sick</span><small>Whole day</small></div><div class="r"><i class="ck on">✓</i><span>Mia Santos · Vacation</span><small>Half-day</small></div><div class="r"><span></span><b class="btn" style="padding:5px 14px">Approve 3 selected</b></div></div>`},
+{t:"A clearer leave balance",d:"See your used, pending and remaining days in one place on the Leave Balance tab.",i:`<div class="mini"><div class="st"><div><b>4</b>Used</div><div><b>2</b>Pending</div><div><b>9</b>Remaining</div></div><div class="pr"><i style="width:40%"></i></div></div>`},
+{t:"Acknowledge memos faster",d:"Read and acknowledge company memos right from the Policies page. No extra steps.",i:`<div class="mini"><div class="r"><span><b>Year-End Holiday Pay</b><span class="tg">Memorandum</span></span></div><div class="r"><span class="c-new" style="padding:2px 8px;border-radius:6px;font-weight:700">✓ Acknowledged</span><small>Oct 22, 2026</small></div></div>`}];
+const $=id=>root.getElementById(id);let k=0;
+const rows=(l,c,a)=>a.map(x=>`<li><i class="k ${c}">${l}</i><span>${x}</span></li>`).join("");
+$("feed").innerHTML=R.map((r,n)=>`<div class="acc ${n?"":"open"}"><button class="ah" aria-expanded="${!n}"><span class="col"><span class="m"><b>T201 v${r.v}</b> · ${r.d}${n?"":'<span class="tg">Latest</span>'}</span><span class="t">${r.t}</span></span><span class="chev">⌄</span></button><div class="ab"><div class="abi"><ul>${rows("New","c-new",r.new)}${rows("Improved","c-imp",r.imp)}${rows("Fixed","c-fix",r.fix)}</ul></div></div></div>`).join("");
+$("feed").onclick=e=>{const h=e.target.closest(".ah");if(h)h.setAttribute("aria-expanded",h.parentElement.classList.toggle("open"))};
+$("dots").innerHTML=S.map((s,n)=>`<button aria-label="Step ${n+1}"></button>`).join("");
+const dt=[...$("dots").children];
+function render(){const s=S[k];$("sc").innerHTML=`<div class="a"><h2 id="mt">${s.t}</h2><p>${s.d}</p><button class="ill" id="ill" aria-label="Open in Releases">${s.i}<span class="hint">Open in Releases ↗</span></button></div>`;
+dt.forEach((d,n)=>d.classList.toggle("on",n===k));$("pv").disabled=k===0;$("nx").disabled=k===S.length-1;$("ill").onclick=toNotice}
+const open=()=>{k=0;render();$("ov").classList.remove("show");void $("ov").offsetWidth;$("ov").classList.add("show");setTimeout(()=>$("cl").focus({preventScroll:true}),400)};
+const close=()=>$("ov").classList.remove("show");
+function page(p){$("dash").classList.toggle("hide",p!=="dash");$("rel").classList.toggle("hide",p!=="rel");
+[...root.querySelectorAll("[data-p]")].forEach(b=>b.classList.toggle("on",b.dataset.p===p));scrollTo(0,0)}
+const toNotice=()=>{close();page("rel")};
+$("nx").onclick=()=>{if(k<S.length-1){k++;render()}};$("pv").onclick=()=>{if(k>0){k--;render()}};
+$("cl").onclick=close;$("ov").onclick=e=>{if(e.target===$("ov"))close()};
+dt.forEach((d,n)=>d.onclick=()=>{k=n;render()});
+root.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>page(b.dataset.p));
+$("replay").onclick=open;
+addEventListener("keydown",e=>{if(e.key==="Escape")close();if($("ov").classList.contains("show")){if(e.key==="ArrowRight")$("nx").click();if(e.key==="ArrowLeft")$("pv").click()}});
+function signin(){$("login").classList.add("hide");$("appw").classList.remove("hide");page("dash");setTimeout(open,450)}
+function reset(){close();$("appw").classList.add("hide");$("login").classList.remove("hide");page("dash")}
+$("gbtn").onclick=signin;$("avt").onclick=reset;
+const H=host;H.addEventListener("shown",reset);
+$("theme").onclick=$("theme0").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
+render();
+}
+function v5(root,host){
+const R=[
+{v:"1.6.0",d:"Oct 20, 2026",t:"Faster leave approvals",sum:"Managers can approve or decline several leave requests at once, and everyone sees a clearer balance summary.",new:["Bulk approve or decline leave requests","Leave Balance tab shows used, pending and remaining days","Acknowledge memos directly from the Company Policies page"],imp:["Department filter remembers your last selection","Faster loading for employee profiles"],fix:["Pending leave counts now update right after approval","Fixed wrong dates on mobile leave requests"]},
+{v:"1.5.3",d:"Oct 6, 2026",t:"Salary history and document reminders",sum:"HR documents show clearer expiry reminders, and salary history is easier to review.",new:["Expiry badges for HR documents, such as Due in 14 days"],imp:["Salary history table is easier to scan"],fix:["Fixed audit trail showing the wrong time zone"]},
+{v:"1.5.0",d:"Sep 18, 2026",t:"Company Policies page",sum:"Employees can now read company memos and acknowledge them in one place.",new:["Company Policies page with required acknowledgment"],imp:["Cleaner dashboard layout"],fix:[]}];
+const $=id=>root.getElementById(id);
+const sec=(t,ic,a)=>a.length?`<h4>${ic} ${t}</h4><ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
+$("feed").innerHTML=R.map((r,i)=>`<div class="acc ${i?"":"open"}"><button class="ach" aria-expanded="${!i}"><span class="ct"><span class="m"><b>v${r.v}</b>· ${r.d}${i?"":'<span class="lt">Latest</span>'}</span><span class="at">${r.t}</span></span><span class="chev">⌄</span></button><div class="acb"><div class="abi2"><p>${r.sum}</p>${sec("New","✨",r.new)}${sec("Improved","🔧",r.imp)}${sec("Fixed","🐛",r.fix)}</div></div></div>`).join("");
+$("feed").onclick=e=>{const h=e.target.closest(".ach");if(h)h.setAttribute("aria-expanded",h.parentElement.classList.toggle("open"))};
+const view=v=>{$("home").classList.toggle("hide",v==="r");$("rel").classList.toggle("hide",v!=="r");scrollTo(0,0)};
+$("go").onclick=$("fn").onclick=()=>view("r");$("back").onclick=$("brand").onclick=$("si").onclick=()=>view("h");
+$("theme").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
+}
+function v6(root,host){
+function fl(root,host){
+const R=[
+{v:"1.6.0",d:"Oct 20, 2026",t:"Faster leave approvals",sum:"Managers can approve or decline several leave requests at once, and everyone sees a clearer balance summary.",new:["Bulk approve or decline leave requests","Leave Balance tab shows used, pending and remaining days","Acknowledge memos directly from the Company Policies page"],imp:["Department filter remembers your last selection","Faster loading for employee profiles"],fix:["Pending leave counts now update right after approval","Fixed wrong dates on mobile leave requests"]},
+{v:"1.5.3",d:"Oct 6, 2026",t:"Salary history and document reminders",sum:"HR documents show clearer expiry reminders, and salary history is easier to review.",new:["Expiry badges for HR documents, such as Due in 14 days"],imp:["Salary history table is easier to scan"],fix:["Fixed audit trail showing the wrong time zone"]},
+{v:"1.5.0",d:"Sep 18, 2026",t:"Company Policies page",sum:"Employees can now read company memos and acknowledge them in one place.",new:["Company Policies page with required acknowledgment"],imp:["Cleaner dashboard layout"],fix:[]}];
+const $=id=>root.getElementById(id);
+const sec=(t,ic,a)=>a.length?`<h4>${ic} ${t}</h4><ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
+$("feed").innerHTML=R.map((r,i)=>`<div class="acc ${i?"":"open"}"><button class="ach" aria-expanded="${!i}"><span class="ct"><span class="m"><b>v${r.v}</b>· ${r.d}${i?"":'<span class="lt">Latest</span>'}</span><span class="at">${r.t}</span></span><span class="chev">⌄</span></button><div class="acb"><div class="abi2"><p>${r.sum}</p>${sec("New","✨",r.new)}${sec("Improved","🔧",r.imp)}${sec("Fixed","🐛",r.fix)}</div></div></div>`).join("");
+$("feed").onclick=e=>{const h=e.target.closest(".ach");if(h)h.setAttribute("aria-expanded",h.parentElement.classList.toggle("open"))};
+const view=v=>{$("home").classList.toggle("hide",v==="r");$("rel").classList.toggle("hide",v!=="r");scrollTo(0,0)};
+const H=host,go=t=>()=>H.dispatchEvent(new CustomEvent("goto",{detail:t}));
+$("go").onclick=$("fn").onclick=go("new");$("back").onclick=$("brand").onclick=$("dbh").onclick=go("back");$("si0").onclick=$("gs0").onclick=$("gs1").onclick=go("login");
+H.addEventListener("view",e=>{const d=e.detail;view(d.v==="new"?"r":"h");if(d.v==="new"){$("back").textContent=d.signed?"← Back to dashboard":"← Back to home";$("hout").classList.toggle("hide",d.signed);$("hin").classList.toggle("hide",!d.signed)}else{$("hout").classList.remove("hide");$("hin").classList.add("hide")}});
+$("theme").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
+}
+function fa(root,host){
+const R=[
+{v:"1.6.0",d:"Oct 20, 2026",t:"Faster leave approvals",new:["Bulk approve or decline leave requests","Leave Balance shows used, pending and remaining days","Acknowledge memos on the Company Policies page"],imp:["Department filter remembers your last selection","Faster loading for employee profiles"],fix:["Pending leave counts update right after approval","Fixed wrong dates on mobile leave requests"]},
+{v:"1.5.3",d:"Oct 6, 2026",t:"Salary history and document reminders",new:["Expiry badges for HR documents, such as Due in 14 days"],imp:["Salary history table is easier to scan"],fix:["Fixed audit trail showing the wrong time zone"]},
+{v:"1.5.0",d:"Sep 18, 2026",t:"Company Policies page",new:["Company Policies page with required acknowledgment"],imp:["Cleaner dashboard layout"],fix:[]}];
+const S=[
+{t:"What’s new in T201",d:"Version 1.6.0 brings faster leave approvals, a clearer leave balance and easier memo acknowledgment.",i:`<div class="mini"><div class="r"><span><span class="tg" style="margin:0 6px 0 0">Latest</span><b>T201 v1.6.0</b> · Oct 20, 2026</span></div><b style="font-size:15px">Faster leave approvals</b><div class="chs"><span class="c-new">3 new</span><span class="c-imp">2 improved</span><span class="c-fix">2 fixed</span></div></div>`},
+{t:"Approve leave requests in bulk",d:"Managers can approve or decline several leave requests at once, which saves time on busy days.",i:`<div class="mini"><div class="r"><i class="ck on">✓</i><span>Ana Reyes · Vacation</span><small>Whole day</small></div><div class="r"><i class="ck on">✓</i><span>Leo Cruz · Sick</span><small>Whole day</small></div><div class="r"><i class="ck on">✓</i><span>Mia Santos · Vacation</span><small>Half-day</small></div><div class="r"><span></span><b class="btn" style="padding:5px 14px">Approve 3 selected</b></div></div>`},
+{t:"A clearer leave balance",d:"See your used, pending and remaining days in one place on the Leave Balance tab.",i:`<div class="mini"><div class="st"><div><b>4</b>Used</div><div><b>2</b>Pending</div><div><b>9</b>Remaining</div></div><div class="pr"><i style="width:40%"></i></div></div>`},
+{t:"Acknowledge memos faster",d:"Read and acknowledge company memos right from the Policies page. No extra steps.",i:`<div class="mini"><div class="r"><span><b>Year-End Holiday Pay</b><span class="tg">Memorandum</span></span></div><div class="r"><span class="c-new" style="padding:2px 8px;border-radius:6px;font-weight:700">✓ Acknowledged</span><small>Oct 22, 2026</small></div></div>`}];
+const $=id=>root.getElementById(id);let k=0;
+const rows=(l,c,a)=>a.map(x=>`<li><i class="k ${c}">${l}</i><span>${x}</span></li>`).join("");
+$("dots").innerHTML=S.map((s,n)=>`<button aria-label="Step ${n+1}"></button>`).join("");
+const dt=[...$("dots").children];
+function render(){const s=S[k];$("sc").innerHTML=`<div class="a"><h2 id="mt">${s.t}</h2><p>${s.d}</p><button class="ill" id="ill" aria-label="See what’s new">${s.i}<span class="hint">See what’s new ↗</span></button></div>`;
+dt.forEach((d,n)=>d.classList.toggle("on",n===k));$("pv").disabled=k===0;$("nx").disabled=k===S.length-1;$("ill").onclick=toNotice}
+const open=()=>{k=0;render();$("ov").classList.remove("show");void $("ov").offsetWidth;$("ov").classList.add("show");setTimeout(()=>$("cl").focus({preventScroll:true}),400)};
+const close=()=>$("ov").classList.remove("show");
+function page(p){$("dash").classList.toggle("hide",p!=="dash");
+[...root.querySelectorAll("[data-p]")].forEach(b=>b.classList.toggle("on",b.dataset.p===p));scrollTo(0,0)}
+const toNotice=()=>{close();H.dispatchEvent(new CustomEvent("goto",{detail:"new"}))};
+$("nx").onclick=()=>{if(k<S.length-1){k++;render()}};$("pv").onclick=()=>{if(k>0){k--;render()}};
+$("cl").onclick=close;$("ov").onclick=e=>{if(e.target===$("ov"))close()};
+dt.forEach((d,n)=>d.onclick=()=>{k=n;render()});
+root.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>page(b.dataset.p));
+
+addEventListener("keydown",e=>{if(e.key==="Escape")close();if($("ov").classList.contains("show")){if(e.key==="ArrowRight")$("nx").click();if(e.key==="ArrowLeft")$("pv").click()}});
+function signin(){H.dispatchEvent(new CustomEvent("goto",{detail:"signedin"}));$("login").classList.add("hide");$("appw").classList.remove("hide");page("dash");setTimeout(open,450)}
+function reset(){H.dispatchEvent(new CustomEvent("goto",{detail:"signedout"}));close();$("appw").classList.add("hide");$("login").classList.remove("hide");page("dash")}
+$("gbtn").onclick=signin;$("avt").onclick=reset;
+const H=host;H.addEventListener("shown",reset);H.addEventListener("view",e=>{if(e.detail==="login"){close();$("appw").classList.add("hide");$("login").classList.remove("hide")}else{$("login").classList.add("hide");$("appw").classList.remove("hide");page("dash")}scrollTo(0,0)});$("lbrand").onclick=()=>H.dispatchEvent(new CustomEvent("goto",{detail:"landing"}));
+$("theme").onclick=$("theme0").onclick=()=>{const d=host,c=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=c==="dark"?"light":"dark"};
+render();
+}
+const $=id=>root.getElementById(id);
+const hl=$("hl"),ha=$("ha"),O=host;let signed=false;
+[[hl,"tl",fl],[ha,"ta",fa]].forEach(([h,t,f])=>{const sr=h.attachShadow({mode:"open"});sr.appendChild($(t).content.cloneNode(true));f(sr,h)});
+const ev=(h,d)=>h.dispatchEvent(new CustomEvent("view",{detail:d}));
+const put=h=>{hl.hidden=h!==hl;ha.hidden=h!==ha;scrollTo(0,0)};
+function route(t){
+if(t==="signedin"){signed=true;return}if(t==="signedout"){signed=false;return}
+if(t==="landing"||(t==="back"&&!signed)){put(hl);ev(hl,{v:"home"})}
+else if(t==="login"){signed=false;put(ha);ev(ha,"login")}
+else if(t==="dash"||t==="back"){put(ha);ev(ha,"dash")}
+else if(t==="new"){put(hl);ev(hl,{v:"new",signed})}}
+hl.addEventListener("goto",e=>route(e.detail));ha.addEventListener("goto",e=>route(e.detail));
+const sync=new MutationObserver(m=>{const t=m[0].target.dataset.theme;[O,hl,ha].forEach(h=>{if(h.dataset.theme!==t)h.dataset.theme=t})});
+[O,hl,ha].forEach(h=>sync.observe(h,{attributes:true,attributeFilter:["data-theme"]}));
+}
+const hosts=[1,2,3,4,5,6].map(n=>document.getElementById("h"+n)),fns=[v1,v2,v3,v4,v5,v6],tabs=[...document.querySelectorAll(".seg button")];
 hosts.forEach((h,k)=>{const sr=h.attachShadow({mode:"open"});sr.appendChild(document.getElementById("tpl"+(k+1)).content.cloneNode(true));fns[k](sr,h)});
-function show(k){hosts.forEach((h,j)=>h.hidden=j!==k);tabs.forEach((t,j)=>t.setAttribute("aria-selected",j===k));scrollTo(0,0);requestAnimationFrame(()=>dispatchEvent(new Event("resize")))}
+function show(k){hosts.forEach((h,j)=>h.hidden=j!==k);tabs.forEach((t,j)=>t.setAttribute("aria-selected",j===k));scrollTo(0,0);requestAnimationFrame(()=>{dispatchEvent(new Event("resize"));hosts[k].dispatchEvent(new Event("shown"))})}
 tabs.forEach((t,k)=>t.onclick=()=>show(k));
-addEventListener("keydown",e=>{if(e.target.closest&&e.target.closest("input,textarea"))return;if(["1","2","3"].includes(e.key))show(+e.key-1)});
+addEventListener("keydown",e=>{if(["1","2","3","4","5","6"].includes(e.key))show(+e.key-1)});
 const mo=new MutationObserver(m=>{const t=m[0].target.dataset.theme;hosts.forEach(h=>{if(h.dataset.theme!==t)h.dataset.theme=t})});
 hosts.forEach(h=>mo.observe(h,{attributes:true,attributeFilter:["data-theme"]}));
 </script></body></html>
