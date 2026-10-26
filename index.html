@@ -1294,7 +1294,7 @@ const R=[
 const $=id=>root.getElementById(id);
 const sec=(t,a)=>a.length?`<h4 class="sec">${t}</h4><ul>${a.map(x=>`<li><b>${x[0]}</b> — ${x[1]}</li>`).join("")}</ul>`:"";
 $("nav").innerHTML=R.map((r,i)=>`<button data-i="${i}"><span class="nl">v${r.v}<small>${r.d.replace(/^(\w{3})\w*/,"$1")}</small></span></button>`).join("");
-$("pane").innerHTML=R.map((r,i)=>`<article hidden><div class="rh"><div class="rk">T201 · RELEASE NOTES${i?"":'<span class="lt">Latest</span>'}</div><h1>Version ${r.v}</h1><div class="rm"><span>${r.d}</span><span>Tito Solutions</span><span>${r.enh.length+r.imp.length+r.fix.length} changes</span></div></div><p>This document summarizes employee-facing changes in <b>T201</b> release <b>${r.v}</b>.</p><div class="bx"><h3>T201</h3><h4>Summary</h4><p>${r.sum}</p>${sec("Enhancements",r.enh)}${sec("Improvements",r.imp)}${sec("Fixes",r.fix)}</div></article>`).join("");
+$("pane").innerHTML=R.map((r,i)=>`<article hidden><div class="rh"><div class="rk">T201 · RELEASE NOTES${i?"":'<span class="lt">Latest</span>'}</div><h1>Version ${r.v}</h1><div class="rm"><span>${r.d}</span><span>Bea Binene</span><span>${r.enh.length+r.imp.length+r.fix.length} changes</span></div></div><p>This document summarizes employee-facing changes in <b>T201</b> release <b>${r.v}</b>.</p><div class="bx"><h3>T201</h3><h4>Summary</h4><p>${r.sum}</p>${sec("Enhancements",r.enh)}${sec("Improvements",r.imp)}${sec("Fixes",r.fix)}</div></article>`).join("");
 const arts=[...$("pane").children],btns=[...$("nav").children];
 function sel(i){arts.forEach((a,j)=>a.hidden=j!==i);btns.forEach((b,j)=>b.classList.toggle("on",j===i))}
 $("nav").onclick=e=>{const b=e.target.closest("button");if(b)sel(+b.dataset.i)};
